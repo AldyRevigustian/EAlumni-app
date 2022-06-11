@@ -16,7 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarColor: CustColors.primaryWhite,
+      systemNavigationBarColor: Colors.white,
       systemNavigationBarIconBrightness: Brightness.dark,
     ));
     super.initState();
@@ -28,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: CustColors.primaryWhite,
+      backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
       body: Center(
         child: Column(
@@ -59,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 children: [
                   TextFieldInput(
-                    hintText: 'Enter your email',
+                    hintText: 'Email',
                     textInputType: TextInputType.emailAddress,
                     // textEditingController: _emailController,
                   ),
@@ -67,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 24,
                   ),
                   TextFieldInput(
-                    hintText: 'Enter your password',
+                    hintText: 'Password',
                     textInputType: TextInputType.text,
                     // textEditingController: _passwordController,
                     isPass: true,
@@ -83,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     child: Container(
                       child: Text(
-                        'Log in',
+                        'Masuk',
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: "Lato",
@@ -109,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       Container(
                         child: const Text(
-                          'Dont have an account?',
+                          'Tidak punya akun?',
                         ),
                         padding: const EdgeInsets.symmetric(vertical: 8),
                       ),
@@ -121,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         child: Container(
                           child: const Text(
-                            ' Signup.',
+                            ' Buat akun baru',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                             ),

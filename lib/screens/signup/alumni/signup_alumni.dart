@@ -28,7 +28,7 @@ class _SignupAlumniState extends State<SignupAlumni> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: CustColors.primaryWhite,
+      backgroundColor: Colors.white,
       body: Center(
         child: SingleChildScrollView(
           child: Padding(

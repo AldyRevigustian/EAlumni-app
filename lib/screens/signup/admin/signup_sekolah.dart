@@ -4,19 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:instagram_redesign_ui/const.dart';
 import 'package:instagram_redesign_ui/screens/feed_screen.dart';
-import 'package:instagram_redesign_ui/screens/login_screen.dart';
 import 'package:instagram_redesign_ui/screens/signup/admin/signup_admin.dart';
-import 'package:instagram_redesign_ui/screens/signup/alumni/signup_alumni.dart';
-import 'package:instagram_redesign_ui/screens/signup/karyawan/signup_karyawan.dart';
+import 'package:instagram_redesign_ui/screens/signup/alumni/signup_alumni_next.dart';
 
-class SignupScreen extends StatefulWidget {
-  const SignupScreen({Key key}) : super(key: key);
+class SignupSekolah extends StatefulWidget {
+  const SignupSekolah({Key key}) : super(key: key);
 
   @override
-  State<SignupScreen> createState() => _SignupScreenState();
+  State<SignupSekolah> createState() => _SignupSekolahState();
 }
 
-class _SignupScreenState extends State<SignupScreen> {
+class _SignupSekolahState extends State<SignupSekolah> {
   void initState() {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       systemNavigationBarColor: Colors.white,
@@ -26,6 +24,7 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   String dropdownValue;
+  String _value;
 
   @override
   Widget build(BuildContext context) {
@@ -43,19 +42,40 @@ class _SignupScreenState extends State<SignupScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  // SizedBox(
+                  //   height: 40,
+                  // ),
                   Text(
-                    "REGISTER",
+                    "DAFTAR SEKOLAH",
+                    textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
-                    height: 100,
+                    height: 50,
+                  ),
+                  CircleAvatar(
+                    radius: 80,
+                    backgroundImage: AssetImage("assets/images/user0.png"),
+                    child: Stack(children: [
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: CircleAvatar(
+                          radius: 18,
+                          backgroundColor: Colors.white,
+                          child: Icon(Icons.camera),
+                        ),
+                      ),
+                    ]),
+                  ),
+                  SizedBox(
+                    height: 40,
                   ),
                   TextField(
                     decoration: InputDecoration(
-                      hintText: "Nama Depan",
+                      hintText: "Nama Sekolah",
                       prefixIcon: Padding(
                           padding: EdgeInsets.only(right: 10),
-                          child: Icon(Icons.person)),
+                          child: Icon(Icons.business)),
                     ),
                   ),
                   SizedBox(
@@ -63,10 +83,22 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                   TextField(
                     decoration: InputDecoration(
-                      hintText: "Nama Belakang",
+                      hintText: "Alamat Sekolah",
                       prefixIcon: Padding(
                           padding: EdgeInsets.only(right: 10),
-                          child: Icon(Icons.person)),
+                          child: Icon(Icons.location_pin)),
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: 20,
+                  ),
+                  TextField(
+                    decoration: InputDecoration(
+                      hintText: "Kota Asal Sekolah",
+                      prefixIcon: Padding(
+                          padding: EdgeInsets.only(right: 10),
+                          child: Icon(Icons.map)),
                     ),
                   ),
                   SizedBox(
@@ -74,67 +106,11 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                   TextField(
                     decoration: InputDecoration(
-                      hintText: "Email",
+                      hintText: "Deskripsi Sekolah",
                       prefixIcon: Padding(
                           padding: EdgeInsets.only(right: 10),
-                          child: Icon(Icons.email)),
+                          child: Icon(Icons.school)),
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      hintText: "Password",
-                      prefixIcon: Padding(
-                          padding: EdgeInsets.only(right: 10),
-                          child: Icon(Icons.vpn_key_sharp)),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      hintText: "Ulangi Password",
-                      prefixIcon: Padding(
-                          padding: EdgeInsets.only(right: 10),
-                          child: Icon(Icons.vpn_key_sharp)),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  DropdownButtonFormField(
-                    validator: (value) =>
-                        value == null ? 'Please fill this field' : null,
-                    isExpanded: true,
-                    value: dropdownValue,
-                    icon: const Icon(Icons.arrow_drop_down),
-                    decoration: InputDecoration(
-                      hintText: "Daftar Sebagai",
-                      prefixIcon: Padding(
-                          padding: EdgeInsets.only(right: 10),
-                          child: Icon(Icons.person_add_alt_1)),
-                    ),
-                    onChanged: (String newValue) {
-                      setState(() {
-                        dropdownValue = newValue;
-                      });
-                      log(newValue);
-                    },
-                    items: <String>[
-                      'Alumni',
-                      'Admin Sekolah',
-                      'Guru / Karyawan',
-                    ].map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
                   ),
                   const SizedBox(
                     height: 50,
@@ -142,28 +118,16 @@ class _SignupScreenState extends State<SignupScreen> {
                   InkWell(
                     onTap: () {
                       if (_formKey.currentState.validate()) {
-                        if (dropdownValue == "Alumni") {
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => SignupAlumni(),
-                          ));
-                        }
-                        if (dropdownValue == "Guru / Karyawan") {
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => SignupKaryawan(),
-                          ));
-                        }
-                        if (dropdownValue == "Admin Sekolah") {
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => SignupAdmin(),
-                          ));
-                        }
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => SignupAdmin(),
+                        ));
                       }
                     },
                     // onTap: () =>
 
                     child: Container(
                       child: Text(
-                        'Daftar',
+                        'Simpan',
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: "Lato",

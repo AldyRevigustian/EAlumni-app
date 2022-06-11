@@ -29,7 +29,7 @@ class _SignupAlumniNextState extends State<SignupAlumniNext> {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: CustColors.primaryWhite,
+      backgroundColor: Colors.white,
       body: Center(
         child: SingleChildScrollView(
           child: Padding(

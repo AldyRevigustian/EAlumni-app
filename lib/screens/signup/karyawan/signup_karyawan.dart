@@ -31,7 +31,7 @@ class _SignupKaryawanState extends State<SignupKaryawan> {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: CustColors.primaryWhite,
+      backgroundColor: Colors.white,
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
@@ -46,13 +46,14 @@ class _SignupKaryawanState extends State<SignupKaryawan> {
                   ),
                   Text(
                     "PROFIL GURU / KARYAWAN",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
-                    height: 40,
+                    height: 50,
                   ),
                   CircleAvatar(
-                    radius: 58,
+                    radius: 80,
                     backgroundImage: AssetImage("assets/images/user0.png"),
                     child: Stack(children: [
                       Align(
