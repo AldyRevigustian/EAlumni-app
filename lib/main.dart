@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_redesign_ui/const.dart';
-import 'package:instagram_redesign_ui/screens/feed_screen.dart';
+import 'package:instagram_redesign_ui/screens/main/feed_screen.dart';
 import 'package:instagram_redesign_ui/screens/login_screen.dart';
 
 void main() => runApp(MyApp());
