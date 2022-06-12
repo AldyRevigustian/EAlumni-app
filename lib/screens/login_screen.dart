@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:instagram_redesign_ui/const.dart';
 import 'package:instagram_redesign_ui/screens/main/feed_screen.dart';
+import 'package:instagram_redesign_ui/screens/main/navbar.dart';
 import 'package:instagram_redesign_ui/screens/signup/signup_screen.dart';
 import 'package:instagram_redesign_ui/widget/textfield.dart';
 
@@ -43,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
               style: TextStyle(
                   color: Colors.black,
                   fontSize: 50,
-                  fontFamily: "Montserrat",
+                  fontFamily: "Lato",
                   fontWeight: FontWeight.w500),
             ),
             Text(
@@ -78,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   InkWell(
                     onTap: () => Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => FeedScreen(),
+                        builder: (context) => Navbar(),
                       ),
                     ),
                     child: Container(
@@ -94,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       decoration: const ShapeDecoration(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          borderRadius: BorderRadius.all(Radius.circular(100)),
                         ),
                         color: CustColors.primaryBlue,
                       ),

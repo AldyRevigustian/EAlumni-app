@@ -68,7 +68,7 @@ class _SignupAlumniState extends State<SignupAlumni> {
                     hintText: "Alamat",
                     prefixIcon: Padding(
                         padding: EdgeInsets.only(right: 10),
-                        child: Icon(Icons.location_on)),
+                        child: Icon(Icons.home)),
                   ),
                 ),
                 SizedBox(

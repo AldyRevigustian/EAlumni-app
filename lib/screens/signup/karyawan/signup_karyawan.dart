@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:instagram_redesign_ui/const.dart';
 import 'package:instagram_redesign_ui/screens/main/feed_screen.dart';
+import 'package:instagram_redesign_ui/screens/main/navbar.dart';
 import 'package:instagram_redesign_ui/screens/signup/alumni/signup_alumni_next.dart';
 
 class SignupKaryawan extends StatefulWidget {
@@ -178,11 +179,11 @@ class _SignupKaryawanState extends State<SignupKaryawan> {
                   InkWell(
                     onTap: () {
                       if (_formKey.currentState.validate()) {
-                        if (_value != null) {
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => FeedScreen(),
-                          ));
-                        }
+                        // if (_value != null) {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Navbar(),
+                        ));
+                        // }
                       }
                     },
                     // onTap: () =>
@@ -200,7 +201,7 @@ class _SignupKaryawanState extends State<SignupKaryawan> {
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       decoration: const ShapeDecoration(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          borderRadius: BorderRadius.all(Radius.circular(100)),
                         ),
                         color: CustColors.primaryBlue,
                       ),

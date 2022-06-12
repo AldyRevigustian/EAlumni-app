@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:instagram_redesign_ui/const.dart';
 import 'package:instagram_redesign_ui/screens/main/feed_screen.dart';
+import 'package:instagram_redesign_ui/screens/main/navbar.dart';
 import 'package:instagram_redesign_ui/screens/signup/admin/signup_sekolah.dart';
 import 'package:instagram_redesign_ui/screens/signup/alumni/signup_alumni_next.dart';
 
@@ -116,7 +117,7 @@ class _SignupAdminState extends State<SignupAdmin> {
                     onTap: () {
                       if (_formKey.currentState.validate()) {
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => FeedScreen(),
+                          builder: (context) => Navbar(),
                         ));
                       }
                     },
@@ -135,7 +136,7 @@ class _SignupAdminState extends State<SignupAdmin> {
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       decoration: const ShapeDecoration(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          borderRadius: BorderRadius.all(Radius.circular(100)),
                         ),
                         color: CustColors.primaryBlue,
                       ),

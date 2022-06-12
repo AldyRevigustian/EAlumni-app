@@ -48,7 +48,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
-                    height: 100,
+                    height: 60,
                   ),
                   TextField(
                     decoration: InputDecoration(
@@ -174,7 +174,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       decoration: const ShapeDecoration(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          borderRadius: BorderRadius.all(Radius.circular(100)),
                         ),
                         color: CustColors.primaryBlue,
                       ),

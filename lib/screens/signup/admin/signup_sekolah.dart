@@ -138,7 +138,7 @@ class _SignupSekolahState extends State<SignupSekolah> {
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       decoration: const ShapeDecoration(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          borderRadius: BorderRadius.all(Radius.circular(100)),
                         ),
                         color: CustColors.primaryBlue,
                       ),

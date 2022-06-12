@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:instagram_redesign_ui/const.dart';
 import 'package:instagram_redesign_ui/screens/main/feed_screen.dart';
+import 'package:instagram_redesign_ui/screens/main/navbar.dart';
 
 class SignupAlumniNext extends StatefulWidget {
   const SignupAlumniNext({Key key}) : super(key: key);
@@ -88,7 +89,7 @@ class _SignupAlumniNextState extends State<SignupAlumniNext> {
                         hintText: "Tambahkan Perguruan Tinggi",
                         prefixIcon: Padding(
                             padding: EdgeInsets.only(right: 10),
-                            child: Icon(Icons.location_on)),
+                            child: Icon(Icons.school)),
                       ),
                     ),
                     SizedBox(
@@ -181,7 +182,7 @@ class _SignupAlumniNextState extends State<SignupAlumniNext> {
                       onTap: () {
                         if (_formKey.currentState.validate()) {
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => FeedScreen(),
+                            builder: (context) => Navbar(),
                           ));
                         }
                       },
