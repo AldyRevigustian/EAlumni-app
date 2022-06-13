@@ -1,6 +1,8 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:instagram_redesign_ui/const.dart';
 import 'package:instagram_redesign_ui/screens/main/post/add_post.dart';
 import 'package:photo_manager/photo_manager.dart';
 
@@ -40,35 +42,52 @@ class _PostScreenState extends State<PostScreen> {
           await PhotoManager.getAssetPathList(onlyAll: true);
       print(albums);
       List<AssetEntity> media =
-          await albums[0].getAssetListPaged(currentPage, 10000000);
+          await albums[0].getAssetListPaged(currentPage, 9);
       print(media);
       List<Widget> temp = [];
       for (var asset in media) {
         if (asset.type == AssetType.image) {
           temp.add(FutureBuilder(
-            future: asset.thumbDataWithSize(500, 500),
+            future: asset.thumbDataWithSize(400, 400),
             builder: (BuildContext context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done)
-                return Stack(
-                  children: <Widget>[
-                    Positioned.fill(
-                      child: GestureDetector(
-                        onTap: () {
-                          // log("Pick");
-                          // log(snapshot.data.toString());
-                          setState(() {
-                            picked = snapshot.data;
-                          });
-                        },
-                        child: Image.memory(
-                          snapshot.data,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ],
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                  child: SpinKitFadingCube(
+                    size: 20,
+                    color: Colors.black.withOpacity(0.2),
+                  ),
                 );
-              return Container();
+              } else if (snapshot.connectionState == ConnectionState.done) {
+                if (snapshot.hasError) {
+                  return const Text('Error');
+                } else if (snapshot.hasData) {
+                  return snapshot.data.isEmpty
+                      ? Center(child: Text("No Data"))
+                      : Stack(
+                          children: <Widget>[
+                            Positioned.fill(
+                              child: GestureDetector(
+                                onTap: () {
+                                  // log("Pick");
+                                  // log(snapshot.data.toString());
+                                  setState(() {
+                                    picked = snapshot.data;
+                                  });
+                                },
+                                child: Image.memory(
+                                  snapshot.data,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                } else {
+                  return Text('Empty data');
+                }
+              } else {
+                return Container();
+              }
             },
           ));
         }
@@ -116,7 +135,8 @@ class _PostScreenState extends State<PostScreen> {
             //     ),
             //   ),
             // )
-            GestureDetector(
+            InkWell(
+              // borderRadius: BorderRadius.circular(80),
               onTap: () {
                 if (picked != null) {
                   Navigator.push(
@@ -145,40 +165,74 @@ class _PostScreenState extends State<PostScreen> {
           children: [
             Container(
               height: 10,
-              color: Colors.white,
+              color: CustColors.primaryWhite,
             ),
             Container(
-              color: Colors.white,
-              height: height / 2.4,
-              width: width,
-              child: (picked != null)
-                  ? Image.memory(
-                      picked,
-                      fit: BoxFit.contain,
-                    )
-                  : Center(
-                      child: Text(
-                      "Pick Image",
-                      style: TextStyle(
-                        fontFamily: "Proxima",
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black.withOpacity(0.5),
-                      ),
-                    )),
-            ),
+                color: CustColors.primaryWhite,
+                height: height / 2.4,
+                width: width,
+                child: (picked != null)
+                    ? Image.memory(
+                        picked,
+                        fit: BoxFit.contain,
+                      )
+                    // : Center(
+                    //     child: Icon(
+                    //     Icons.photo_library,
+                    //     size: 30,
+                    //     color: Colors.black.withOpacity(0.5),
+                    //   )),
+
+                    : Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SpinKitFadingCube(
+                              size: 20,
+                              color: Colors.black.withOpacity(0.2),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 20),
+                              child: Text(
+                                "Pick a Image",
+                                style: TextStyle(
+                                    color: Colors.black.withOpacity(0.2),
+                                    fontSize: 12),
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                //   child: Text(
+                //   "Pick Image",
+                //   style: TextStyle(
+                //     fontFamily: "Proxima",
+                //     fontSize: 12,
+                //     fontWeight: FontWeight.bold,
+                //     color: Colors.black.withOpacity(0.5),
+                //   ),
+                // )),
+                ),
             Container(
               height: 10,
-              color: Colors.white,
+              color: CustColors.primaryWhite,
             ),
             Expanded(
-              child: GridView.builder(
-                  itemCount: _mediaList.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3),
-                  itemBuilder: (BuildContext context, int index) {
-                    return _mediaList[index];
-                  }),
+              child: Container(
+                decoration: BoxDecoration(color: Colors.white, boxShadow: [
+                  BoxShadow(
+                      color: Colors.black.withOpacity(0.3),
+                      offset: Offset(0, -2),
+                      blurRadius: 2)
+                ]),
+                child: GridView.builder(
+                    itemCount: _mediaList.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3),
+                    itemBuilder: (BuildContext context, int index) {
+                      return _mediaList[index];
+                    }),
+              ),
             ),
           ],
         ),

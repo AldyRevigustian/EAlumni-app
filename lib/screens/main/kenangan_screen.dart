@@ -1,7 +1,9 @@
 import 'dart:developer';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:instagram_redesign_ui/const.dart';
 import 'package:instagram_redesign_ui/models/kenangan_model.dart';
 import 'package:instagram_redesign_ui/models/post_model.dart';
@@ -107,6 +109,9 @@ class __BuildPostState extends State<_BuildPost> {
   // formatText();
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     return Padding(
       padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 15.0),
       child: Container(
@@ -135,12 +140,25 @@ class __BuildPostState extends State<_BuildPost> {
                   ),
                   child: CircleAvatar(
                     child: ClipOval(
-                      child: Image(
-                        width: 50.0,
-                        height: 50.0,
-                        image:
-                            AssetImage(kenangans[widget.index].authorImageUrl),
-                        fit: BoxFit.cover,
+                      // child: Image(
+                      //   width: 50.0,
+                      //   height: 50.0,
+                      //   image:
+                      //       AssetImage(kenangans[widget.index].authorImageUrl),
+                      //   fit: BoxFit.cover,
+                      // ),
+                      child: CachedNetworkImage(
+                        fit: BoxFit.contain,
+                        imageUrl: kenangans[widget.index].authorImageUrl,
+                        placeholder: (context, url) =>
+                            // SpinKitFadingCube(
+                            //   size: 30,
+                            //   color: Colors.white.withOpacity(0.8),
+                            // ),
+                            Center(
+                          child: Image.asset('assets/images/user0.png'),
+                        ),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
                       ),
                     ),
                   ),
@@ -169,7 +187,12 @@ class __BuildPostState extends State<_BuildPost> {
                   padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
                   child: (kenangans[widget.index].imageUrl) != null
                       ? Container(
+                          constraints: BoxConstraints(
+                            minHeight: 200,
+                            minWidth: double.infinity,
+                          ),
                           decoration: BoxDecoration(
+                            // color: Colors.black.withOpacity(0.8),
                             borderRadius: BorderRadius.circular(20),
                             boxShadow: [
                               BoxShadow(
@@ -179,10 +202,23 @@ class __BuildPostState extends State<_BuildPost> {
                               ),
                             ],
                           ),
+
+                          // child: SpinKitFadingCube(
+                          //   size: 30,
+                          //   color: Colors.white.withOpacity(0.8),
+                          // ),
                           child: ClipRRect(
-                            child:
-                                Image.asset(kenangans[widget.index].imageUrl),
-                            borderRadius: BorderRadius.circular(20),
+                            child: CachedNetworkImage(
+                              fit: BoxFit.contain,
+                              imageUrl: kenangans[widget.index].imageUrl,
+                              placeholder: (context, url) => SpinKitFadingCube(
+                                size: 30,
+                                color: Colors.white.withOpacity(0.8),
+                              ),
+                              errorWidget: (context, url, error) =>
+                                  Icon(Icons.error),
+                            ),
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
                           ),
                         )
                       : Center(),

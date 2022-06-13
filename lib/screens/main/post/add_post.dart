@@ -35,7 +35,23 @@ class _AddPostState extends State<AddPost> {
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        automaticallyImplyLeading: true,
+        leading: InkWell(
+          // borderRadius: BorderRadius.circular(100),
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Icon(
+              Icons.arrow_back_ios_rounded,
+              color: Colors.black,
+              size: 20,
+            ),
+          ),
+        ),
         backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
         title: Padding(
           padding: EdgeInsets.only(top: 5),
           child: Text(
@@ -110,34 +126,57 @@ class _AddPostState extends State<AddPost> {
             SizedBox(
               height: 50,
             ),
-            InkWell(
-              onTap: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => Navbar(),
-                ),
-              ),
+            // InkWell(
+            //   onTap: () => Navigator.of(context).push(
+            //     MaterialPageRoute(
+            //       builder: (context) => Navbar(),
+            //     ),
+            //   ),
+            //   child: Padding(
+            //     padding: const EdgeInsets.only(left: 30, right: 30),
+            //     child: Container(
+            //       child: Text(
+            //         'Post',
+            //         style: TextStyle(
+            //           color: Colors.white,
+            //           fontFamily: "Lato",
+            //         ),
+            //       ),
+            //       width: double.infinity,
+            //       alignment: Alignment.center,
+            //       padding: const EdgeInsets.symmetric(vertical: 12),
+            //       decoration: const ShapeDecoration(
+            //         shape: RoundedRectangleBorder(
+            //           borderRadius: BorderRadius.all(Radius.circular(100)),
+            //         ),
+            //         color: CustColors.primaryBlue,
+            //       ),
+            //     ),
+            //   ),
+            //   // onTap: loginUser,
+            // ),
+            MaterialButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => Navbar(),
+                  ),
+                );
+              },
+              minWidth: width / 1.2,
               child: Padding(
-                padding: const EdgeInsets.only(left: 30, right: 30),
-                child: Container(
-                  child: Text(
-                    'Post',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: "Lato",
-                    ),
-                  ),
-                  width: double.infinity,
-                  alignment: Alignment.center,
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  decoration: const ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(100)),
-                    ),
-                    color: CustColors.primaryBlue,
+                padding: const EdgeInsets.only(top: 15, bottom: 15),
+                child: Text(
+                  'Post',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: "Lato",
                   ),
                 ),
               ),
-              // onTap: loginUser,
+              color: CustColors.primaryBlue,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(100)),
             ),
           ],
         ),

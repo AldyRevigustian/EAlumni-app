@@ -1,5 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:instagram_redesign_ui/const.dart';
 import 'package:instagram_redesign_ui/models/post_model.dart';
 import 'package:instagram_redesign_ui/screens/main/view_post_screen.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -17,236 +20,6 @@ class _FeedScreenState extends State<FeedScreen> {
       systemNavigationBarIconBrightness: Brightness.dark,
     ));
     super.initState();
-  }
-
-  Widget _buildPost(int index) {
-    String firstHalf;
-    String secondHalf;
-
-    bool flag = true;
-
-    formatText(String author, String text) {
-      if (text.length > 50) {
-        firstHalf = text.substring(0, 50);
-        secondHalf = text.substring(50, text.length);
-      } else {
-        firstHalf = text;
-        secondHalf = "";
-      }
-      return RichText(
-        text: new TextSpan(
-          style: TextStyle(
-            color: Colors.black,
-            fontFamily: "Proxima",
-            fontWeight: FontWeight.normal,
-          ),
-          children: <TextSpan>[
-            new TextSpan(
-                text: author + "  ",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                )),
-            new TextSpan(
-              text: posts[index].caption,
-            ),
-          ],
-        ),
-      );
-    }
-
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-
-    return Padding(
-      padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 15.0),
-      child: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 5.0),
-          child: Column(
-            children: <Widget>[
-              ListTile(
-                leading: Container(
-                  width: 50.0,
-                  height: 50.0,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black45,
-                        offset: Offset(0.0, 2.0),
-                        blurRadius: 6.0,
-                      ),
-                    ],
-                  ),
-                  child: CircleAvatar(
-                    child: ClipOval(
-                      child: Image(
-                        width: 50.0,
-                        height: 50.0,
-                        image: AssetImage(posts[index].authorImageUrl),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-                title: Text(
-                  posts[index].authorName,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                subtitle: Text(
-                  posts[index].timeAgo,
-                ),
-              ),
-              InkWell(
-                onDoubleTap: () => print('Like post'),
-                // onTap: () {
-                //   Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //       builder: (_) => ViewPostScreen(post: posts[index]),
-                //     ),
-                //   );
-                // },
-                // child: Container(
-                //     margin: EdgeInsets.all(10.0),
-                //     width: double.infinity,
-                //     height: height / 3,
-                //     decoration: AssetImage(posts[index].imageUrl) != null
-                //         ? BoxDecoration(
-                //             borderRadius: BorderRadius.circular(25.0),
-                //             boxShadow: [
-                //               BoxShadow(
-                //                 color: Colors.black45,
-                //                 offset: Offset(0.0, 8.0),
-                //                 blurRadius: 8.0,
-                //               ),
-                //             ],
-                //             image: DecorationImage(
-                //               image: AssetImage(posts[index].imageUrl),
-                //               fit: BoxFit.cover,
-                //             ),
-                //           )
-                //         : Center(
-                //             child: CircularProgressIndicator(),
-                //           )),
-
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
-                  child: (posts[index].imageUrl) != null
-                      ? Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black45,
-                                offset: Offset(0.0, 8.0),
-                                blurRadius: 8.0,
-                              ),
-                            ],
-                          ),
-                          child: ClipRRect(
-                            child: Image.asset(posts[index].imageUrl),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        )
-                      : Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 10.0,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            IconButton(
-                              icon: Icon(Icons.favorite_border),
-                              iconSize: 25.0,
-                              onPressed: () => print('Like post'),
-                            ),
-                            Text(
-                              '2,515',
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            SizedBox(width: 20.0),
-                            Row(
-                              children: <Widget>[
-                                IconButton(
-                                  icon: Icon(MdiIcons.commentProcessingOutline),
-                                  color: Colors.black,
-                                  iconSize: 25.0,
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (_) =>
-                                            ViewPostScreen(post: posts[index]),
-                                      ),
-                                    );
-                                  },
-                                ),
-                                Text(
-                                  '2,515',
-                                  style: TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Padding(
-                        padding: const EdgeInsets.only(
-                            top: 10, left: 10, bottom: 20),
-                        child: Container(
-                          width: width / 1.2,
-                          child: Text(
-                            posts[index].caption,
-                            style: TextStyle(fontFamily: "Proxima"
-                                // fontWeight: FontWeight.bold,
-                                ),
-                          ),
-                        )
-
-                        // child: ReadMoreText(
-                        //   "sadasdasdasdsadas",
-                        //   trimLines: 10,
-                        //   colorClickableText: Colors.black,
-                        //   trimMode: TrimMode.Line,
-                        //   trimCollapsedText: 'Show more',
-                        //   trimExpandedText: 'Show less',
-                        //   moreStyle: TextStyle(
-                        //       fontSize: 14, fontWeight: FontWeight.bold),
-                        // )),
-                        ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
   }
 
   List<Widget> _buildPosts() {
@@ -359,6 +132,9 @@ class __BuildPostState extends State<_BuildPost> {
   // formatText();
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     return Padding(
       padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 15.0),
       child: Container(
@@ -387,11 +163,18 @@ class __BuildPostState extends State<_BuildPost> {
                   ),
                   child: CircleAvatar(
                     child: ClipOval(
-                      child: Image(
-                        width: 50.0,
-                        height: 50.0,
-                        image: AssetImage(posts[widget.index].authorImageUrl),
-                        fit: BoxFit.cover,
+                      child: CachedNetworkImage(
+                        fit: BoxFit.contain,
+                        imageUrl: posts[widget.index].authorImageUrl,
+                        placeholder: (context, url) =>
+                            // SpinKitFadingCube(
+                            //   size: 30,
+                            //   color: Colors.white.withOpacity(0.8),
+                            // ),
+                            Center(
+                          child: Image.asset('assets/images/user0.png'),
+                        ),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
                       ),
                     ),
                   ),
@@ -419,20 +202,52 @@ class __BuildPostState extends State<_BuildPost> {
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
                   child: (posts[widget.index].imageUrl) != null
-                      ? Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black45,
-                                offset: Offset(0.0, 8.0),
-                                blurRadius: 8.0,
-                              ),
-                            ],
+                      ? ConstrainedBox(
+                          constraints: BoxConstraints(
+                            minHeight: 200,
+                            minWidth: double.infinity,
                           ),
-                          child: ClipRRect(
-                            child: Image.asset(posts[widget.index].imageUrl),
-                            borderRadius: BorderRadius.circular(20),
+                          child: Container(
+                            // constraints: BoxConstraints(
+                            //   minHeight: 200,
+                            //   minWidth: double.infinity,
+                            // ),
+                            decoration: BoxDecoration(
+                              // color: Colors.black.withOpacity(0.8),
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black45,
+                                  offset: Offset(0.0, 8.0),
+                                  blurRadius: 8.0,
+                                ),
+                              ],
+                            ),
+
+                            // child: SpinKitFadingCube(
+                            //   size: 30,
+                            //   color: Colors.white.withOpacity(0.8),
+                            // ),
+
+                            child: ClipRRect(
+                              child: CachedNetworkImage(
+                                fit: BoxFit.contain,
+                                imageUrl: posts[widget.index].imageUrl,
+                                placeholder: (context, url) =>
+                                    SpinKitFadingCube(
+                                  size: 30,
+                                  color: Colors.white.withOpacity(0.8),
+                                ),
+                                errorWidget: (context, url, error) =>
+                                    Icon(Icons.error),
+                              ),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+
+                            // child: ClipRRect(
+                            //   child: Image.asset(posts[widget.index].imageUrl),
+                            //   borderRadius: BorderRadius.circular(20),
+                            // ),
                           ),
                         )
                       : Center(),
@@ -529,19 +344,6 @@ class __BuildPostState extends State<_BuildPost> {
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ),
-                                        // flag
-                                        //     ? Icon(
-                                        //         Icons.arrow_drop_down_rounded,
-                                        //         size: 30,
-                                        //         color: Colors.black
-                                        //             .withOpacity(0.5),
-                                        //       )
-                                        //     : Icon(
-                                        //         Icons.arrow_drop_up_rounded,
-                                        //         size: 30,
-                                        //         color: Colors.black
-                                        //             .withOpacity(0.5),
-                                        //       )
                                       ],
                                     ),
                                     onTap: () {

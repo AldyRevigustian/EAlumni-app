@@ -178,16 +178,17 @@ class _SignupAlumniNextState extends State<SignupAlumniNext> {
                     const SizedBox(
                       height: 50,
                     ),
-                    GestureDetector(
-                      onTap: () {
+                    MaterialButton(
+                      onPressed: () {
                         if (_formKey.currentState.validate()) {
                           Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => Navbar(),
                           ));
                         }
                       },
-
-                      child: Container(
+                      minWidth: double.infinity,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 15, bottom: 15),
                         child: Text(
                           'Simpan',
                           style: TextStyle(
@@ -195,17 +196,10 @@ class _SignupAlumniNextState extends State<SignupAlumniNext> {
                             fontFamily: "Lato",
                           ),
                         ),
-                        width: double.infinity,
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        decoration: const ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(4)),
-                          ),
-                          color: CustColors.primaryBlue,
-                        ),
                       ),
-                      // onTap: loginUser,
+                      color: CustColors.primaryBlue,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(100)),
                     ),
                     const SizedBox(
                       height: 50,

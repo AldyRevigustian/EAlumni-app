@@ -6,6 +6,7 @@ import 'package:instagram_redesign_ui/screens/main/kenangan_screen.dart';
 import 'package:instagram_redesign_ui/screens/main/post/post_screen.dart';
 import 'package:instagram_redesign_ui/screens/main/profile.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:photo_manager/photo_manager.dart';
 
 class Navbar extends StatefulWidget {
   @override
@@ -27,6 +28,8 @@ class _NavbarState extends State<Navbar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor:
+          curent == 2 || curent == 3 ? Colors.white : CustColors.primaryWhite,
       body: PageStorage(
         bucket: bucket,
         child: curentScreen,
@@ -119,14 +122,16 @@ class _NavbarState extends State<Navbar> {
                               ],
                             )),
                   Padding(
-                    padding: EdgeInsets.all(5.0),
+                    padding: EdgeInsets.all(0.0),
                     child: FlatButton(
-                      padding: EdgeInsets.symmetric(vertical: 5.0),
+                      padding: EdgeInsets.symmetric(
+                        vertical: 5.0,
+                      ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                       // color: Color(0xFF23B66F),
-                      color: CustColors.primaryBlue,
+                      color: CustColors.primaryBlue.withOpacity(0.9),
                       onPressed: () {
                         setState(() {
                           curentScreen = PostScreen();
@@ -135,7 +140,7 @@ class _NavbarState extends State<Navbar> {
                       },
                       // onPressed: () => print('Upload Photo'),
                       child: Icon(
-                        Icons.add,
+                        Icons.add_box_rounded,
                         size: 30.0,
                         color: Colors.white,
                       ),

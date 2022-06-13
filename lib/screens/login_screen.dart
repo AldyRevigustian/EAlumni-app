@@ -76,13 +76,18 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(
                     height: 24,
                   ),
-                  InkWell(
-                    onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => Navbar(),
-                      ),
-                    ),
-                    child: Container(
+                  MaterialButton(
+                    // height: 50,
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => Navbar(),
+                        ),
+                      );
+                    },
+                    minWidth: width,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 15, bottom: 15),
                       child: Text(
                         'Masuk',
                         style: TextStyle(
@@ -90,18 +95,40 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontFamily: "Lato",
                         ),
                       ),
-                      width: double.infinity,
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      decoration: const ShapeDecoration(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(100)),
-                        ),
-                        color: CustColors.primaryBlue,
-                      ),
                     ),
-                    // onTap: loginUser,
+                    color: CustColors.primaryBlue,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(100)),
                   ),
+                  // InkWell(
+                  //   onTap: () => Navigator.of(context).push(
+                  //     MaterialPageRoute(
+                  //       builder: (context) => Navbar(),
+                  //     ),
+                  //   ),
+                  //   child: Container(
+                  //     child: Padding(
+                  //       padding: const EdgeInsets.only(top: 5, bottom: 5),
+                  //       child: Text(
+                  //         'Masuk',
+                  //         style: TextStyle(
+                  //           color: Colors.white,
+                  //           fontFamily: "Lato",
+                  //         ),
+                  //       ),
+                  //     ),
+                  //     width: double.infinity,
+                  //     alignment: Alignment.center,
+                  //     padding: const EdgeInsets.symmetric(vertical: 12),
+                  //     decoration: const ShapeDecoration(
+                  //       shape: RoundedRectangleBorder(
+                  //         borderRadius: BorderRadius.all(Radius.circular(100)),
+                  //       ),
+                  //       color: CustColors.primaryBlue,
+                  //     ),
+                  //   ),
+                  //   // onTap: loginUser,
+                  // ),
                   const SizedBox(
                     height: 12,
                   ),
