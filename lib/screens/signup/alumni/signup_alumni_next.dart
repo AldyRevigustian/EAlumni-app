@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:instagram_redesign_ui/const.dart';
-import 'package:instagram_redesign_ui/screens/main/feed_screen.dart';
+import 'package:instagram_redesign_ui/screens/main/berita_screen.dart';
 import 'package:instagram_redesign_ui/screens/main/navbar.dart';
 
 class SignupAlumniNext extends StatefulWidget {

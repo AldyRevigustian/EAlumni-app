@@ -7,7 +7,7 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="instagram_redesign_ui"
+        android:label="E-Alumni"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

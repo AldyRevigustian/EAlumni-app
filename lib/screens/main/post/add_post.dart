@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:instagram_redesign_ui/helper/get_helper.dart';
 import 'package:instagram_redesign_ui/screens/main/navbar.dart';
 import 'package:photo_manager/photo_manager.dart';
 
@@ -17,6 +18,8 @@ class AddPost extends StatefulWidget {
 }
 
 class _AddPostState extends State<AddPost> {
+  TextEditingController caption = new TextEditingController(); // th
+  final _formKey = GlobalKey<FormState>();
   @override
   void initState() {
     log(widget.image.toString());
@@ -24,11 +27,10 @@ class _AddPostState extends State<AddPost> {
   }
 
   String _value;
+  String errorText;
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
-
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -84,86 +86,98 @@ class _AddPostState extends State<AddPost> {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(30, 10, 30, 0),
-              child: TextField(
+              child: TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter the caption.';
+                  }
+                  return null;
+                },
+                controller: caption,
                 decoration: InputDecoration(hintText: "Caption"),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20, top: 10),
+              padding: const EdgeInsets.only(left: 20, top: 20),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      Radio(
-                          value: "Berita",
-                          groupValue: _value,
-                          onChanged: (value) {
-                            setState(() {
-                              _value = value;
-                              log(_value);
-                            });
-                          }),
-                      Text("Berita")
-                    ],
+                  Container(
+                    height: 35,
+                    child: Row(
+                      children: [
+                        Radio(
+                            value: "berita",
+                            groupValue: _value,
+                            onChanged: (value) {
+                              setState(() {
+                                _value = value;
+                                log(_value);
+                              });
+                            }),
+                        Text("Berita")
+                      ],
+                    ),
                   ),
-                  Row(
-                    children: [
-                      Radio(
-                          value: "Kenangan Sekolah",
-                          groupValue: _value,
-                          onChanged: (value) {
-                            setState(() {
-                              _value = value;
-                              log(_value);
-                            });
-                          }),
-                      Text("Kenangan Sekolah")
-                    ],
+                  Container(
+                    height: 35,
+                    child: Row(
+                      children: [
+                        Radio(
+                            value: "kenangan",
+                            groupValue: _value,
+                            onChanged: (value) {
+                              setState(() {
+                                _value = value;
+                                log(_value);
+                              });
+                            }),
+                        Text("Kenangan Sekolah")
+                      ],
+                    ),
                   ),
+                  // Text(errorText)
+                  errorText != null
+                      ? Padding(
+                          padding: const EdgeInsets.only(left: 15, top: 5),
+                          child: Text(
+                            errorText,
+                            style: TextStyle(color: Colors.red, fontSize: 12),
+                          ),
+                        )
+                      : Center()
                 ],
               ),
             ),
             SizedBox(
-              height: 50,
+              height: 40,
             ),
-            // InkWell(
-            //   onTap: () => Navigator.of(context).push(
-            //     MaterialPageRoute(
-            //       builder: (context) => Navbar(),
-            //     ),
-            //   ),
-            //   child: Padding(
-            //     padding: const EdgeInsets.only(left: 30, right: 30),
-            //     child: Container(
-            //       child: Text(
-            //         'Post',
-            //         style: TextStyle(
-            //           color: Colors.white,
-            //           fontFamily: "Lato",
-            //         ),
-            //       ),
-            //       width: double.infinity,
-            //       alignment: Alignment.center,
-            //       padding: const EdgeInsets.symmetric(vertical: 12),
-            //       decoration: const ShapeDecoration(
-            //         shape: RoundedRectangleBorder(
-            //           borderRadius: BorderRadius.all(Radius.circular(100)),
-            //         ),
-            //         color: CustColors.primaryBlue,
-            //       ),
-            //     ),
-            //   ),
-            //   // onTap: loginUser,
-            // ),
             MaterialButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => Navbar(),
-                  ),
-                );
+              onPressed: () async {
+                if (_formKey.currentState.validate()) {
+                  if (_value != null) {
+                    bool masuk = await GetHelper().postFeed("Aldy",
+                        "authorImageUrl", " imageUrl", _value, caption.text);
+
+                    masuk == true
+                        ? Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => Navbar(),
+                            ),
+                          )
+                        : AlertDialog(
+                            title: Text("Error"),
+                          );
+                  } else {
+                    setState(() {
+                      errorText = "Please Chose Type";
+                    });
+                    log(errorText);
+                  }
+                }
               },
-              minWidth: width / 1.2,
+              minWidth: width / 1.15,
               child: Padding(
                 padding: const EdgeInsets.only(top: 15, bottom: 15),
                 child: Text(

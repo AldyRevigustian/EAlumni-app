@@ -22,6 +22,13 @@ class _PostScreenState extends State<PostScreen> {
     _fetchNewMedia();
   }
 
+  // @override
+  // void dispose() {
+  //   _fetchNewMedia().dispose();
+  //   print('Dispose used');
+  //   super.dispose();
+  // }
+
   _handleScrollEvent(ScrollNotification scroll) {
     if (scroll.metrics.pixels / scroll.metrics.maxScrollExtent > 0.33) {
       if (currentPage != lastPage) {

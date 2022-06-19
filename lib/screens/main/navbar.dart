@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_redesign_ui/const.dart';
 import 'package:instagram_redesign_ui/screens/main/akreditasi_screen.dart';
-import 'package:instagram_redesign_ui/screens/main/feed_screen.dart';
+import 'package:instagram_redesign_ui/screens/main/berita_screen.dart';
 import 'package:instagram_redesign_ui/screens/main/kenangan_screen.dart';
 import 'package:instagram_redesign_ui/screens/main/post/post_screen.dart';
 import 'package:instagram_redesign_ui/screens/main/profile.dart';
@@ -17,14 +17,14 @@ class _NavbarState extends State<Navbar> {
   int curent = 0;
 
   final List screen = [
-    FeedScreen(),
+    BeritaScreen(),
     KenanganScreen(),
     ProfileScreen(),
     AkreditasiScreen()
   ];
 
   final PageStorageBucket bucket = PageStorageBucket();
-  Widget curentScreen = FeedScreen();
+  Widget curentScreen = BeritaScreen();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +48,7 @@ class _NavbarState extends State<Navbar> {
                   MaterialButton(
                       onPressed: () {
                         setState(() {
-                          curentScreen = FeedScreen();
+                          curentScreen = BeritaScreen();
                           curent = 0;
                         });
                       },
@@ -125,7 +125,7 @@ class _NavbarState extends State<Navbar> {
                     padding: EdgeInsets.all(0.0),
                     child: FlatButton(
                       padding: EdgeInsets.symmetric(
-                        vertical: 5.0,
+                        vertical: 10.0,
                       ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0),

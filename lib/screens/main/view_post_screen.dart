@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:instagram_redesign_ui/models/post_model.dart';
+import 'package:instagram_redesign_ui/models/feed_model.dart';
 
 class ViewPostScreen extends StatefulWidget {
-  final Post post;
+  final Feed post;
 
   ViewPostScreen({this.post});
 

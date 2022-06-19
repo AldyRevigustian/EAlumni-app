@@ -4,12 +4,12 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:instagram_redesign_ui/helper/get_helper.dart';
 import 'package:instagram_redesign_ui/widget/build_post.dart';
 
-class KenanganScreen extends StatefulWidget {
+class BeritaScreen extends StatefulWidget {
   @override
-  _KenanganScreenState createState() => _KenanganScreenState();
+  _BeritaScreenState createState() => _BeritaScreenState();
 }
 
-class _KenanganScreenState extends State<KenanganScreen> {
+class _BeritaScreenState extends State<BeritaScreen> {
   Future listPost;
 
   @override
@@ -40,13 +40,41 @@ class _KenanganScreenState extends State<KenanganScreen> {
                   Container(
                     margin: EdgeInsets.only(top: 5),
                     child: Text(
-                      'Kenangan',
+                      'Berita',
                       style: TextStyle(
                         fontFamily: 'Billabong',
                         fontSize: 30.0,
                       ),
                     ),
                   ),
+                  Container(
+                    width: 170,
+                    height: 40,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(100)),
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(20, 2, 2, 2),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.search,
+                            color: Colors.black.withOpacity(0.5),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            "Cari Teman",
+                            style: TextStyle(
+                              color: Colors.black.withOpacity(0.5),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    // color: Colors.white,
+                  )
                 ],
               ),
             ),
@@ -131,7 +159,7 @@ class _KenanganScreenState extends State<KenanganScreen> {
                                     return Padding(
                                         padding: const EdgeInsets.only(top: 0),
                                         child: snapshot.data[index].type ==
-                                                "kenangan"
+                                                "berita"
                                             ? BuildPost(
                                                 authorName: snapshot
                                                     .data[index].authorName,
@@ -148,6 +176,24 @@ class _KenanganScreenState extends State<KenanganScreen> {
                                                     .data[index].comment,
                                               )
                                             : Center());
+                                    // child: snapshot.data[index].type ==
+                                    //         "berita"
+                                    //     ? BuildPost(
+                                    //         authorName: snapshot
+                                    //             .data[index].authorName,
+                                    //         authorImageUrl: snapshot
+                                    //             .data[index].authorImageUrl,
+                                    //         timeAgo: snapshot
+                                    //             .data[index].timeAgo,
+                                    //         imageUrl: snapshot
+                                    //             .data[index].imageUrl,
+                                    //         caption: snapshot
+                                    //             .data[index].caption,
+                                    //         like: snapshot.data[index].like,
+                                    //         comment: snapshot
+                                    //             .data[index].comment,
+                                    //       )
+                                    //     : Center());
                                   },
                                 );
                         } else {
