@@ -124,7 +124,7 @@ class _NavbarState extends State<Navbar> {
                     padding: EdgeInsets.all(0.0),
                     child: FlatButton(
                       padding: EdgeInsets.symmetric(
-                        vertical: 10.0,
+                        vertical: 5.0,
                       ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0),
@@ -140,7 +140,7 @@ class _NavbarState extends State<Navbar> {
                       // onPressed: () => print('Upload Photo'),
                       child: Icon(
                         Icons.add_box_rounded,
-                        size: 30.0,
+                        size: 35.0,
                         color: Colors.white,
                       ),
                     ),
