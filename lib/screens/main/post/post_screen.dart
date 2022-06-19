@@ -126,8 +126,7 @@ class _PostScreenState extends State<PostScreen> {
             padding: EdgeInsets.only(top: 5),
             child: Text(
               "Post",
-              style: TextStyle(
-                  color: Colors.black, fontFamily: "Billabong", fontSize: 30),
+              style: TextStyle(color: Colors.black, fontSize: 25),
             ),
           ),
           centerTitle: true,

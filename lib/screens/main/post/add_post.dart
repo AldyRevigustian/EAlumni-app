@@ -34,7 +34,7 @@ class _AddPostState extends State<AddPost> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         automaticallyImplyLeading: true,
@@ -58,8 +58,7 @@ class _AddPostState extends State<AddPost> {
           padding: EdgeInsets.only(top: 5),
           child: Text(
             "Post",
-            style: TextStyle(
-                color: Colors.black, fontFamily: "Billabong", fontSize: 30),
+            style: TextStyle(color: Colors.black, fontSize: 25),
           ),
         ),
         centerTitle: true,

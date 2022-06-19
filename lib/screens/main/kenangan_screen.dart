@@ -42,8 +42,8 @@ class _KenanganScreenState extends State<KenanganScreen> {
                     child: Text(
                       'Kenangan',
                       style: TextStyle(
-                        fontFamily: 'Billabong',
-                        fontSize: 30.0,
+                        fontFamily: 'Proxima',
+                        fontSize: 25.0,
                       ),
                     ),
                   ),
@@ -55,113 +55,122 @@ class _KenanganScreenState extends State<KenanganScreen> {
                 // physics: AlwaysScrollableScrollPhysics(),
                 physics: BouncingScrollPhysics(
                     parent: AlwaysScrollableScrollPhysics()),
-                child: FutureBuilder(
-                    future: listPost,
-                    builder: (
-                      BuildContext context,
-                      AsyncSnapshot snapshot,
-                    ) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return ConstrainedBox(
-                          constraints: BoxConstraints(minHeight: height / 1.4),
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SpinKitFadingCube(
-                                  size: 30,
-                                  color: Colors.black.withOpacity(0.2),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 20),
-                                  child: Text(
-                                    "Loading ...",
-                                    style: TextStyle(
-                                        color: Colors.black.withOpacity(0.2),
-                                        fontSize: 15),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 5),
+                  child: FutureBuilder(
+                      future: listPost,
+                      builder: (
+                        BuildContext context,
+                        AsyncSnapshot snapshot,
+                      ) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return ConstrainedBox(
+                            constraints:
+                                BoxConstraints(minHeight: height / 1.4),
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SpinKitFadingCube(
+                                    size: 30,
+                                    color: Colors.black.withOpacity(0.2),
                                   ),
-                                )
-                              ],
-                            ),
-                          ),
-                        );
-                      } else if (snapshot.connectionState ==
-                          ConnectionState.done) {
-                        if (snapshot.hasError) {
-                          return const Text('Error');
-                        } else if (snapshot.hasData) {
-                          return snapshot.data.isEmpty
-                              ? ConstrainedBox(
-                                  constraints:
-                                      BoxConstraints(minHeight: height / 1.4),
-                                  child: Center(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        // SpinKitFadingCube(
-                                        //   size: 30,
-                                        //   color: Colors.black.withOpacity(0.2),
-                                        // ),
-                                        Icon(
-                                          Icons.error,
-                                          size: 40,
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 20),
+                                    child: Text(
+                                      "Loading ...",
+                                      style: TextStyle(
                                           color: Colors.black.withOpacity(0.2),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 10),
-                                          child: Text(
-                                            "No Post Available",
-                                            style: TextStyle(
-                                                color: Colors.black
-                                                    .withOpacity(0.2),
-                                                fontSize: 15),
-                                          ),
-                                        )
-                                      ],
+                                          fontSize: 15),
                                     ),
-                                  ),
-                                )
-                              : ListView.builder(
-                                  shrinkWrap: true,
-                                  primary: false,
-                                  itemCount: snapshot.data.length,
-                                  itemBuilder: (context, index) {
-                                    return Padding(
-                                        padding: const EdgeInsets.only(top: 0),
-                                        child: snapshot.data[index].type ==
-                                                "kenangan"
-                                            ? BuildPost(
-                                                authorName: snapshot
-                                                    .data[index].authorName,
-                                                authorImageUrl: snapshot
-                                                    .data[index].authorImageUrl,
-                                                timeAgo: snapshot
-                                                    .data[index].timeAgo,
-                                                imageUrl: snapshot
-                                                    .data[index].imageUrl,
-                                                caption: snapshot
-                                                    .data[index].caption,
-                                                like: snapshot.data[index].like,
-                                                comment: snapshot
-                                                    .data[index].comment,
-                                              )
-                                            : Center());
-                                  },
-                                );
-                        } else {
-                          return Center(
-                            child: Text(
-                              'Empty data',
-                              style: TextStyle(color: Colors.red),
+                                  )
+                                ],
+                              ),
                             ),
                           );
+                        } else if (snapshot.connectionState ==
+                            ConnectionState.done) {
+                          if (snapshot.hasError) {
+                            return const Text('Error');
+                          } else if (snapshot.hasData) {
+                            return snapshot.data.isEmpty
+                                ? ConstrainedBox(
+                                    constraints:
+                                        BoxConstraints(minHeight: height / 1.4),
+                                    child: Center(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          // SpinKitFadingCube(
+                                          //   size: 30,
+                                          //   color: Colors.black.withOpacity(0.2),
+                                          // ),
+                                          Icon(
+                                            Icons.error,
+                                            size: 40,
+                                            color:
+                                                Colors.black.withOpacity(0.2),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 10),
+                                            child: Text(
+                                              "No Post Available",
+                                              style: TextStyle(
+                                                  color: Colors.black
+                                                      .withOpacity(0.2),
+                                                  fontSize: 15),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                : ListView.builder(
+                                    shrinkWrap: true,
+                                    primary: false,
+                                    itemCount: snapshot.data.length,
+                                    itemBuilder: (context, index) {
+                                      return Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 0),
+                                          child: snapshot.data[index].type ==
+                                                  "kenangan"
+                                              ? BuildPost(
+                                                  authorName: snapshot
+                                                      .data[index].authorName,
+                                                  authorImageUrl: snapshot
+                                                      .data[index]
+                                                      .authorImageUrl,
+                                                  timeAgo: snapshot
+                                                      .data[index].timeAgo,
+                                                  imageUrl: snapshot
+                                                      .data[index].imageUrl,
+                                                  caption: snapshot
+                                                      .data[index].caption,
+                                                  like:
+                                                      snapshot.data[index].like,
+                                                  comment: snapshot
+                                                      .data[index].comment,
+                                                )
+                                              : Center());
+                                    },
+                                  );
+                          } else {
+                            return Center(
+                              child: Text(
+                                'Empty data',
+                                style: TextStyle(color: Colors.red),
+                              ),
+                            );
+                          }
+                        } else {
+                          return Text('State: ${snapshot.connectionState}');
                         }
-                      } else {
-                        return Text('State: ${snapshot.connectionState}');
-                      }
-                    }),
+                      }),
+                ),
               ),
             ),
           ],

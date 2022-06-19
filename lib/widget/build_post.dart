@@ -40,8 +40,8 @@ class _BuildPostState extends State<BuildPost> {
 
   @override
   void initState() {
-    if (widget.caption.length > 100) {
-      firstHalf = widget.caption.substring(0, 100);
+    if (widget.caption.length > 90) {
+      firstHalf = widget.caption.substring(0, 90);
       secondHalf = widget.caption.substring(50, widget.caption.length);
     } else {
       firstHalf = widget.caption;
@@ -248,14 +248,14 @@ class _BuildPostState extends State<BuildPost> {
                                   SizedBox(
                                     width: 5,
                                   ),
-                                  Text(
-                                    numeral(int.parse(widget.like)),
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  SizedBox(width: 20.0),
+                                  // Text(
+                                  //   numeral(int.parse(widget.like)),
+                                  //   style: TextStyle(
+                                  //     fontSize: 14.0,
+                                  //     fontWeight: FontWeight.bold,
+                                  //   ),
+                                  // ),
+                                  SizedBox(width: 5.0),
                                   IconButton(
                                     icon:
                                         Icon(MdiIcons.commentProcessingOutline),
@@ -271,13 +271,13 @@ class _BuildPostState extends State<BuildPost> {
                                       // );
                                     },
                                   ),
-                                  Text(
-                                    numeral(int.parse(widget.comment)),
-                                    style: TextStyle(
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
+                                  // Text(
+                                  //   numeral(int.parse(widget.comment)),
+                                  //   style: TextStyle(
+                                  //     fontSize: 14.0,
+                                  //     fontWeight: FontWeight.bold,
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),
@@ -289,49 +289,72 @@ class _BuildPostState extends State<BuildPost> {
                       padding: const EdgeInsets.only(
                           top: 5, left: 10, bottom: 10, right: 20),
                       // child: formatText(),
-                      child: Container(
-                        child: secondHalf.isEmpty
-                            ? Padding(
-                                padding: const EdgeInsets.only(bottom: 10),
-                                child: new Text(firstHalf,
-                                    style: TextStyle(fontSize: 14)),
-                              )
-                            : new Column(
-                                children: <Widget>[
-                                  new Text(
-                                    flag
-                                        ? (firstHalf + "...")
-                                        : (firstHalf + secondHalf),
-                                    style: TextStyle(fontSize: 14),
-                                  ),
-                                  new InkWell(
-                                    child: new Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: <Widget>[
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 5),
-                                          child: new Text(
-                                            flag
-                                                ? "Baca Selengkapnya"
-                                                : "Lebih Sedikit",
-                                            style: new TextStyle(
-                                                color: Colors.black
-                                                    .withOpacity(0.5),
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.bold),
-                                          ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        // mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Disukai Oleh" +
+                                " " +
+                                numeral(int.parse(widget.comment)) +
+                                " Orang",
+                            style: TextStyle(
+                              fontFamily: "Proxima",
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          // Text("Disukai Oleh"),
+                          Container(
+                            child: secondHalf.isEmpty
+                                ? Padding(
+                                    padding: const EdgeInsets.only(bottom: 10),
+                                    child: new Text(firstHalf,
+                                        style: TextStyle(fontSize: 14)),
+                                  )
+                                : new Column(
+                                    children: <Widget>[
+                                      new Text(
+                                        flag
+                                            ? (firstHalf + "...")
+                                            : (firstHalf + secondHalf),
+                                        style: TextStyle(fontSize: 14),
+                                      ),
+                                      new InkWell(
+                                        child: new Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: <Widget>[
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.only(top: 5),
+                                              child: new Text(
+                                                flag
+                                                    ? "Baca Selengkapnya"
+                                                    : "Lebih Sedikit",
+                                                style: new TextStyle(
+                                                    color: Colors.black
+                                                        .withOpacity(0.5),
+                                                    fontSize: 12,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ],
-                                    ),
-                                    onTap: () {
-                                      setState(() {
-                                        flag = !flag;
-                                      });
-                                    },
+                                        onTap: () {
+                                          setState(() {
+                                            flag = !flag;
+                                          });
+                                        },
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                          ),
+                        ],
                       ),
                     ),
                   ],

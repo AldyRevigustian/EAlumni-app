@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_redesign_ui/const.dart';
-import 'package:instagram_redesign_ui/screens/main/akreditasi_screen.dart';
+import 'package:instagram_redesign_ui/screens/main/akreditasi/akreditasi_screen.dart';
 import 'package:instagram_redesign_ui/screens/main/berita_screen.dart';
 import 'package:instagram_redesign_ui/screens/main/kenangan_screen.dart';
 import 'package:instagram_redesign_ui/screens/main/post/post_screen.dart';

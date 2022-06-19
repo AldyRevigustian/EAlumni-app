@@ -14,15 +14,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     return Container(
       child: Scaffold(
-        backgroundColor: Colors.white,
+        // backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
           title: Padding(
             padding: EdgeInsets.only(top: 5),
             child: Text(
               "Profile",
-              style: TextStyle(
-                  color: Colors.black, fontFamily: "Billabong", fontSize: 30),
+              style: TextStyle(color: Colors.black, fontSize: 25),
             ),
           ),
           centerTitle: true,
@@ -36,17 +35,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
             //     ),
             //   ),
             // )
-            GestureDetector(
-              onTap: () {},
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Icon(
-                  Icons.edit,
-                  color: Colors.black,
-                  size: 20,
-                ),
-              ),
-            )
+            // GestureDetector(
+            //   onTap: () {},
+            //   child: Padding(
+            //     padding: const EdgeInsets.all(15.0),
+            //     child: Icon(
+            //       Icons.edit,
+            //       color: Colors.black,
+            //       size: 20,
+            //     ),
+            //   ),
+            // )
           ],
         ),
         body: Center(
