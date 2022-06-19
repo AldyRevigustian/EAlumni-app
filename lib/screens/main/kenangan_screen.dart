@@ -18,7 +18,7 @@ class _KenanganScreenState extends State<KenanganScreen> {
       systemNavigationBarColor: Colors.white,
       systemNavigationBarIconBrightness: Brightness.dark,
     ));
-    listPost = GetHelper().getAllPost();
+    listPost = GetHelper().getAllFeed();
 
     super.initState();
   }

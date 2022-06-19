@@ -18,7 +18,7 @@ class _BeritaScreenState extends State<BeritaScreen> {
       systemNavigationBarColor: Colors.white,
       systemNavigationBarIconBrightness: Brightness.dark,
     ));
-    listPost = GetHelper().getAllPost();
+    listPost = GetHelper().getAllFeed();
 
     super.initState();
   }

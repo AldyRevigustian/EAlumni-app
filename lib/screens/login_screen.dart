@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:instagram_redesign_ui/const.dart';
-import 'package:instagram_redesign_ui/screens/main/berita_screen.dart';
 import 'package:instagram_redesign_ui/screens/main/navbar.dart';
 import 'package:instagram_redesign_ui/screens/signup/signup_screen.dart';
 import 'package:instagram_redesign_ui/widget/textfield.dart';

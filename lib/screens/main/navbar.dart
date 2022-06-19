@@ -6,7 +6,6 @@ import 'package:instagram_redesign_ui/screens/main/kenangan_screen.dart';
 import 'package:instagram_redesign_ui/screens/main/post/post_screen.dart';
 import 'package:instagram_redesign_ui/screens/main/profile.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:photo_manager/photo_manager.dart';
 
 class Navbar extends StatefulWidget {
   @override
