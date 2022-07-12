@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_redesign_ui/const.dart';
-import 'package:instagram_redesign_ui/screens/main/akreditasi/akreditasi_screen.dart';
-import 'package:instagram_redesign_ui/screens/main/berita_screen.dart';
-import 'package:instagram_redesign_ui/screens/main/kenangan_screen.dart';
+import 'package:instagram_redesign_ui/screens/main/home_screen.dart';
 import 'package:instagram_redesign_ui/screens/main/post/post_screen.dart';
 import 'package:instagram_redesign_ui/screens/main/profile.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -16,19 +14,18 @@ class _NavbarState extends State<Navbar> {
   int curent = 0;
 
   final List screen = [
-    BeritaScreen(),
-    KenanganScreen(),
+    HomeScreen(),
+    // KenanganScreen(),
     ProfileScreen(),
-    AkreditasiScreen()
   ];
 
   final PageStorageBucket bucket = PageStorageBucket();
-  Widget curentScreen = BeritaScreen();
+  Widget curentScreen = HomeScreen();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:
-          curent == 2 || curent == 3 ? Colors.white : CustColors.primaryWhite,
+      // backgroundColor:
+      //     curent == 2 || curent == 3 ? Colors.white : CustColors.primaryWhite,
       body: PageStorage(
         bucket: bucket,
         child: curentScreen,
@@ -42,12 +39,12 @@ class _NavbarState extends State<Navbar> {
             child: Container(
               height: 80,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   MaterialButton(
                       onPressed: () {
                         setState(() {
-                          curentScreen = BeritaScreen();
+                          curentScreen = HomeScreen();
                           curent = 0;
                         });
                       },
@@ -56,9 +53,9 @@ class _NavbarState extends State<Navbar> {
                           ? Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(MdiIcons.newspaperVariantMultipleOutline),
+                                Icon(MdiIcons.home),
                                 Text(
-                                  "Berita",
+                                  "Home",
                                   style: TextStyle(
                                     fontSize: 10,
                                     color: Colors.black,
@@ -70,49 +67,11 @@ class _NavbarState extends State<Navbar> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Icon(
-                                  MdiIcons.newspaperVariantMultiple,
+                                  MdiIcons.home,
                                   color: Colors.grey,
                                 ),
                                 Text(
-                                  "Berita",
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    color: Colors.grey,
-                                  ),
-                                )
-                              ],
-                            )),
-                  MaterialButton(
-                      onPressed: () {
-                        setState(() {
-                          curentScreen = KenanganScreen();
-                          curent = 1;
-                        });
-                      },
-                      minWidth: 40,
-                      child: curent == 1
-                          ? Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(MdiIcons.history),
-                                Text(
-                                  "Kenangan",
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    color: Colors.black,
-                                  ),
-                                )
-                              ],
-                            )
-                          : Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  MdiIcons.history,
-                                  color: Colors.grey,
-                                ),
-                                Text(
-                                  "Kenangan",
+                                  "Home",
                                   style: TextStyle(
                                     fontSize: 10,
                                     color: Colors.grey,
@@ -134,7 +93,7 @@ class _NavbarState extends State<Navbar> {
                       onPressed: () {
                         setState(() {
                           curentScreen = PostScreen();
-                          curent = 2;
+                          curent = 1;
                         });
                       },
                       // onPressed: () => print('Upload Photo'),
@@ -149,11 +108,11 @@ class _NavbarState extends State<Navbar> {
                       onPressed: () {
                         setState(() {
                           curentScreen = ProfileScreen();
-                          curent = 3;
+                          curent = 2;
                         });
                       },
                       minWidth: 40,
-                      child: curent == 3
+                      child: curent == 2
                           ? Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -176,44 +135,6 @@ class _NavbarState extends State<Navbar> {
                                 ),
                                 Text(
                                   "Profile",
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    color: Colors.grey,
-                                  ),
-                                )
-                              ],
-                            )),
-                  MaterialButton(
-                      onPressed: () {
-                        setState(() {
-                          curentScreen = AkreditasiScreen();
-                          curent = 4;
-                        });
-                      },
-                      minWidth: 40,
-                      child: curent == 4
-                          ? Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(Icons.feed),
-                                Text(
-                                  "Akreditasi",
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    color: Colors.black,
-                                  ),
-                                )
-                              ],
-                            )
-                          : Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.feed_outlined,
-                                  color: Colors.grey,
-                                ),
-                                Text(
-                                  "Akreditasi",
                                   style: TextStyle(
                                     fontSize: 10,
                                     color: Colors.grey,

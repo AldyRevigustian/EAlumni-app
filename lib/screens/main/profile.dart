@@ -1,5 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:instagram_redesign_ui/loading.dart';
+import 'package:instagram_redesign_ui/screens/login_screen.dart';
+import 'package:instagram_redesign_ui/services/user_service.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -35,17 +38,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
             //     ),
             //   ),
             // )
-            // GestureDetector(
-            //   onTap: () {},
-            //   child: Padding(
-            //     padding: const EdgeInsets.all(15.0),
-            //     child: Icon(
-            //       Icons.edit,
-            //       color: Colors.black,
-            //       size: 20,
-            //     ),
-            //   ),
-            // )
+            GestureDetector(
+              onTap: () {
+                logout().then((value) => {
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                              builder: (context) => LoginScreen()),
+                          (route) => false)
+                    });
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Icon(
+                  Icons.logout,
+                  color: Colors.black,
+                  size: 20,
+                ),
+              ),
+            )
           ],
         ),
         body: Center(

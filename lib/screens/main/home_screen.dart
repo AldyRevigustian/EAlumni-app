@@ -4,12 +4,12 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:instagram_redesign_ui/helper/get_helper.dart';
 import 'package:instagram_redesign_ui/widget/build_post.dart';
 
-class BeritaScreen extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   @override
-  _BeritaScreenState createState() => _BeritaScreenState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _BeritaScreenState extends State<BeritaScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   Future listPost;
 
   @override
@@ -37,44 +37,19 @@ class _BeritaScreenState extends State<BeritaScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.only(top: 5),
-                    child: Text(
-                      'Berita',
-                      style: TextStyle(
-                        fontFamily: 'Proxima',
-                        fontSize: 25.0,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5),
+                    child: Container(
+                      margin: EdgeInsets.only(top: 5),
+                      child: Text(
+                        'SMKN 10',
+                        style: TextStyle(
+                          fontFamily: 'Proxima',
+                          fontSize: 25.0,
+                        ),
                       ),
                     ),
                   ),
-                  Container(
-                    width: 170,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(100)),
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(20, 2, 2, 2),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.search,
-                            color: Colors.black.withOpacity(0.5),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Cari Teman",
-                            style: TextStyle(
-                              color: Colors.black.withOpacity(0.5),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    // color: Colors.white,
-                  )
                 ],
               ),
             ),

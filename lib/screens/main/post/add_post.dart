@@ -2,8 +2,13 @@ import 'dart:developer';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:instagram_redesign_ui/constant.dart';
 import 'package:instagram_redesign_ui/helper/get_helper.dart';
+import 'package:instagram_redesign_ui/models/api_response.dart';
+import 'package:instagram_redesign_ui/screens/login_screen.dart';
 import 'package:instagram_redesign_ui/screens/main/navbar.dart';
+import 'package:instagram_redesign_ui/services/post_service.dart';
+import 'package:instagram_redesign_ui/services/user_service.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 import '../../../const.dart';
@@ -20,6 +25,28 @@ class AddPost extends StatefulWidget {
 class _AddPostState extends State<AddPost> {
   TextEditingController caption = new TextEditingController(); // th
   final _formKey = GlobalKey<FormState>();
+
+  void _createPost() async {
+    String image =
+        widget.image == null ? null : getStringImageByte(widget.image);
+    ApiResponse response = await createPost(caption.text, image);
+    if (response.error == null) {
+      Navigator.of(context).pop();
+    } else if (response.error == unauthorized) {
+      logout().then((value) => {
+            Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => LoginScreen()),
+                (route) => false)
+          });
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('${response.error}')));
+      // setState(() {
+      //   _loading = !_loading;
+      // });
+    }
+  }
+
   @override
   void initState() {
     log(widget.image.toString());
@@ -96,84 +123,13 @@ class _AddPostState extends State<AddPost> {
                 decoration: InputDecoration(hintText: "Caption"),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20, top: 20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    height: 35,
-                    child: Row(
-                      children: [
-                        Radio(
-                            value: "berita",
-                            groupValue: _value,
-                            onChanged: (value) {
-                              setState(() {
-                                _value = value;
-                                log(_value);
-                              });
-                            }),
-                        Text("Berita")
-                      ],
-                    ),
-                  ),
-                  Container(
-                    height: 35,
-                    child: Row(
-                      children: [
-                        Radio(
-                            value: "kenangan",
-                            groupValue: _value,
-                            onChanged: (value) {
-                              setState(() {
-                                _value = value;
-                                log(_value);
-                              });
-                            }),
-                        Text("Kenangan Sekolah")
-                      ],
-                    ),
-                  ),
-                  // Text(errorText)
-                  errorText != null
-                      ? Padding(
-                          padding: const EdgeInsets.only(left: 15, top: 5),
-                          child: Text(
-                            errorText,
-                            style: TextStyle(color: Colors.red, fontSize: 12),
-                          ),
-                        )
-                      : Center()
-                ],
-              ),
-            ),
             SizedBox(
               height: 40,
             ),
             MaterialButton(
               onPressed: () async {
                 if (_formKey.currentState.validate()) {
-                  if (_value != null) {
-                    bool masuk = await GetHelper().postFeed("Aldy",
-                        "authorImageUrl", " imageUrl", _value, caption.text);
-
-                    masuk == true
-                        ? Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => Navbar(),
-                            ),
-                          )
-                        : AlertDialog(
-                            title: Text("Error"),
-                          );
-                  } else {
-                    setState(() {
-                      errorText = "Please Chose Type";
-                    });
-                    log(errorText);
-                  }
+                  _createPost();
                 }
               },
               minWidth: width / 1.15,

@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:instagram_redesign_ui/const.dart';
 
 class TextFieldInput extends StatelessWidget {
-  // final TextEditingController textEditingController;
+  final TextEditingController textEditingController;
   final bool isPass;
   final String hintText;
   final TextInputType textInputType;
+  final validator;
   const TextFieldInput({
     Key key,
-    // @required this.textEditingController,
+    @required this.textEditingController,
     this.isPass = false,
     @required this.hintText,
     @required this.textInputType,
+    @required this.validator,
   }) : super(key: key);
 
   @override
@@ -20,8 +22,9 @@ class TextFieldInput extends StatelessWidget {
       borderSide: Divider.createBorderSide(context),
     );
 
-    return TextField(
-      // controller: textEditingController,
+    return TextFormField(
+      controller: textEditingController,
+      validator: validator,
       decoration: InputDecoration(
         fillColor: CustColors.primaryWhite,
         hintText: hintText,
