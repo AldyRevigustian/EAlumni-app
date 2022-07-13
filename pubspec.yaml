@@ -20,6 +20,8 @@ dependencies:
    numeral: ^2.0.1
    image_picker: ^0.7.5+4
    shared_preferences: ^2.0.15
+   fluentui_system_icons: ^1.1.174
+   timeago: ^3.2.2
 
 dev_dependencies:
    flutter_test:

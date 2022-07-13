@@ -1,3 +1,4 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_redesign_ui/const.dart';
 import 'package:instagram_redesign_ui/screens/main/home_screen.dart';
@@ -42,41 +43,48 @@ class _NavbarState extends State<Navbar> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   MaterialButton(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      minWidth: 40,
                       onPressed: () {
                         setState(() {
                           curentScreen = HomeScreen();
                           curent = 0;
                         });
                       },
-                      minWidth: 40,
+                      // minWidth: 40,
                       child: curent == 0
                           ? Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(MdiIcons.home),
-                                Text(
-                                  "Home",
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    color: Colors.black,
-                                  ),
-                                )
+                                Icon(
+                                  FluentIcons.home_20_filled,
+                                  size: 25,
+                                ),
+                                // Text(
+                                //   "Home",
+                                //   style: TextStyle(
+                                //     fontSize: 10,
+                                //     color: Colors.black,
+                                //   ),
+                                // )
                               ],
                             )
                           : Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Icon(
-                                  MdiIcons.home,
+                                  FluentIcons.home_20_filled,
+                                  size: 25,
                                   color: Colors.grey,
                                 ),
-                                Text(
-                                  "Home",
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    color: Colors.grey,
-                                  ),
-                                )
+                                // Text(
+                                //   "Home",
+                                //   style: TextStyle(
+                                //     fontSize: 10,
+                                //     color: Colors.grey,
+                                //   ),
+                                // )
                               ],
                             )),
                   Padding(
@@ -105,6 +113,8 @@ class _NavbarState extends State<Navbar> {
                     ),
                   ),
                   MaterialButton(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
                       onPressed: () {
                         setState(() {
                           curentScreen = ProfileScreen();
@@ -116,30 +126,34 @@ class _NavbarState extends State<Navbar> {
                           ? Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.person),
-                                Text(
-                                  "Profile",
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    color: Colors.black,
-                                  ),
-                                )
+                                Icon(
+                                  FluentIcons.person_20_filled,
+                                  size: 25,
+                                ),
+                                // Text(
+                                //   "Profile",
+                                //   style: TextStyle(
+                                //     fontSize: 10,
+                                //     color: Colors.black,
+                                //   ),
+                                // )
                               ],
                             )
                           : Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Icon(
-                                  Icons.person_outline,
+                                  FluentIcons.person_20_filled,
                                   color: Colors.grey,
+                                  size: 25,
                                 ),
-                                Text(
-                                  "Profile",
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    color: Colors.grey,
-                                  ),
-                                )
+                                // Text(
+                                //   "Profile",
+                                //   style: TextStyle(
+                                //     fontSize: 10,
+                                //     color: Colors.grey,
+                                //   ),
+                                // )
                               ],
                             )),
                 ],
