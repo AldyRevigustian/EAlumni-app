@@ -46,14 +46,23 @@ class _LoadingState extends State<Loading> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height,
-      color: Colors.white,
-      child: Center(
-        child: SpinKitFadingCube(
-          size: 30,
-          color: Colors.black.withOpacity(0.2),
-        ),
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SpinKitFadingCube(
+            size: 30,
+            color: Colors.black.withOpacity(0.2),
+          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(top: 20),
+          //   child: Text(
+          //     "Please wait ...",
+          //     style:
+          //         TextStyle(color: Colors.black.withOpacity(0.2), fontSize: 15),
+          //   ),
+          // )
+        ],
       ),
     );
   }

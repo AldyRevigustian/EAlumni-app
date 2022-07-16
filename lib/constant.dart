@@ -4,8 +4,10 @@ import 'package:intl/intl.dart' as intl;
 import 'package:numeral/fun.dart';
 
 // const baseURL = 'http://your-Ip:8000/api';
-const baseURL = 'http://10.0.2.2:8000/api';
-const baseURLMobile = 'http://10.0.2.2:8000';
+const baseURL = 'http://192.168.0.11:8000/api';
+const baseURLMobile = 'http://192.168.0.11:8000';
+// const baseURL = 'http://10.0.2.2:8000/api';
+// const baseURLMobile = 'http://10.0.2.2:8000';
 const loginURL = baseURL + '/login';
 const registerURL = baseURL + '/register';
 const logoutURL = baseURL + '/logout';
@@ -59,10 +61,10 @@ Row kLoginRegisterHint(String text, String label, Function onTap) {
 
 // likes and comment btn
 
-kLikeAndComment(int value, IconData icon, Color color, Function onTap) {
+kLikeAndComment(IconData icon, Color color, Function onTap) {
   return ConstrainedBox(
     constraints: new BoxConstraints(
-      minWidth: 60.0,
+      minWidth: 50.0,
       // maxHeight: 60.0,
     ),
     child: Material(
@@ -81,13 +83,12 @@ kLikeAndComment(int value, IconData icon, Color color, Function onTap) {
                 size: 30,
                 color: color,
               ),
-              SizedBox(width: 5),
-              Text(
-                numeral(value ?? 0),
-                // intl.NumberFormat.decimalPattern().format(100000),
-                style: TextStyle(
-                    fontWeight: FontWeight.w600, color: Colors.black54),
-              )
+              // Text(
+              //   numeral(value ?? 0),
+              //   // intl.NumberFormat.decimalPattern().format(100000),
+              //   style: TextStyle(
+              //       fontWeight: FontWeight.w600, color: Colors.black54),
+              // )
               // Text(
               //   '$value',
               //   style: TextStyle(fontWeight: FontWeight.w600),
@@ -107,7 +108,7 @@ kComment(IconData icon, Color color, Function onTap) {
       // maxHeight: 60.0,
     ),
     child: Material(
-      color: Colors.white,
+      color: Colors.transparent,
       child: InkWell(
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,

@@ -90,13 +90,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Text(
-                    "REGISTER",
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                  ),
+                  // SizedBox(
+                  //   height: 30,
+                  // ),
+                  // Text(
+                  //   "REGISTER",
+                  //   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  // ),
                   SizedBox(
                     height: 30,
                   ),
@@ -126,7 +126,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ]),
                   ),
                   SizedBox(
-                    height: 30,
+                    height: 60,
                   ),
                   TextFormField(
                     validator: (val) => val.isEmpty ? 'Invalid name' : null,
@@ -192,28 +192,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   MaterialButton(
                     onPressed: () {
-                      // if (_formKey.currentState.validate()) {
-                      //   if (dropdownValue == "Alumni") {
-                      //     Navigator.of(context).push(MaterialPageRoute(
-                      //       builder: (context) => SignupAlumni(),
-                      //     ));
-                      //   }
-                      //   if (dropdownValue == "Guru / Karyawan") {
-                      //     Navigator.of(context).push(MaterialPageRoute(
-                      //       builder: (context) => SignupKaryawan(),
-                      //     ));
-                      //   }
-                      //   if (dropdownValue == "Admin Sekolah") {
-                      //     Navigator.of(context).push(MaterialPageRoute(
-                      //       builder: (context) => SignupAdmin(),
-                      //     ));
-                      //   }
-                      // }
                       if (formKey.currentState.validate()) {
-                        setState(() {
-                          loading = !loading;
+                        if (_imageFile != null) {
+                          setState(() {
+                            loading = !loading;
+                          });
                           _registerUser();
-                        });
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text("Please add profile picture"),
+                          ));
+                        }
                       }
                     },
                     minWidth: double.infinity,

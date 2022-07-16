@@ -1,7 +1,11 @@
+import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:instagram_redesign_ui/const.dart';
 import 'package:instagram_redesign_ui/screens/main/post/add_post.dart';
 import 'package:photo_manager/photo_manager.dart';
@@ -16,10 +20,53 @@ class _PostScreenState extends State<PostScreen> {
   int currentPage = 0;
   int lastPage;
   Uint8List picked;
+
+  File imageFile;
+  String imageData;
+  String imagePath;
+
   @override
   void initState() {
     super.initState();
     _fetchNewMedia();
+  }
+
+  Future pickImage() async {
+    try {
+      var image = await ImagePicker()
+          .getImage(source: ImageSource.gallery, imageQuality: 50);
+      if (image == null) return;
+
+      setState(() {
+        imagePath = image.path;
+        imageFile = File(image.path);
+        picked = imageFile.readAsBytesSync();
+      });
+      // print(imageData);
+      print(imageFile);
+      return imageFile;
+    } on PlatformException catch (e) {
+      print('Failed to pick image: $e');
+    }
+  }
+
+  Future pickImageC() async {
+    try {
+      final image = await ImagePicker()
+          .getImage(source: ImageSource.camera, imageQuality: 50);
+
+      if (image == null) return;
+
+      setState(() {
+        imageFile = File(image.path);
+        picked = imageFile.readAsBytesSync();
+        // picked =
+      });
+      // imageData = base64Encode(imageFile.readAsBytesSync());
+      return imageData;
+    } on PlatformException catch (e) {
+      print('Failed to pick image: $e');
+    }
   }
 
   // @override
@@ -131,16 +178,54 @@ class _PostScreenState extends State<PostScreen> {
           ),
           centerTitle: true,
           automaticallyImplyLeading: false,
+          leading: PopupMenuButton(
+              // icon: IconIcons.menu),
+              child: Padding(
+                  padding: EdgeInsets.only(right: 0),
+                  child: Icon(
+                    Icons.menu,
+                    color: Colors.black.withOpacity(0.8),
+                  )),
+              itemBuilder: (context) => [
+                    PopupMenuItem(
+                        child: Row(
+                          children: [
+                            Icon(
+                              FluentIcons.camera_20_filled,
+                              color: Colors.black54,
+                              // size: 25,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text("Camera")
+                          ],
+                        ),
+                        value: 'camera'),
+                    PopupMenuItem(
+                        child: Row(
+                          children: [
+                            Icon(
+                              FluentIcons.image_20_filled,
+                              color: Colors.black54,
+                              // size: 25,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text("Galery")
+                          ],
+                        ),
+                        value: 'galery')
+                  ],
+              onSelected: (val) {
+                if (val == 'camera') {
+                  pickImageC();
+                } else if (val == "galery") {
+                  pickImage();
+                }
+              }),
           actions: [
-            // Center(
-            //   child: Padding(
-            //     padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-            //     child: Text(
-            //       "Next",
-            //       style: TextStyle(color: Colors.blue, fontFamily: "Proxima"),
-            //     ),
-            //   ),
-            // )
             InkWell(
               // borderRadius: BorderRadius.circular(80),
               onTap: () {
@@ -182,13 +267,6 @@ class _PostScreenState extends State<PostScreen> {
                         picked,
                         fit: BoxFit.contain,
                       )
-                    // : Center(
-                    //     child: Icon(
-                    //     Icons.photo_library,
-                    //     size: 30,
-                    //     color: Colors.black.withOpacity(0.5),
-                    //   )),
-
                     : Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,

@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:typed_data';
 
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_redesign_ui/constant.dart';
 import 'package:instagram_redesign_ui/helper/get_helper.dart';
@@ -64,6 +65,109 @@ class _AddPostState extends State<AddPost> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
+      backgroundColor: Colors.white,
+      bottomNavigationBar: ClipRRect(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20.0),
+            topRight: Radius.circular(20.0),
+          ),
+          child: BottomAppBar(
+            // color: Colors.red,
+            child: Container(
+              height: 80,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  MaterialButton(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      minWidth: 40,
+                      onPressed: () {
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(builder: (context) => Navbar()),
+                            (route) => false);
+                        // setState(() {
+                        //   curentScreen = HomeScreen();
+                        //   curent = 0;
+                        // });
+                      },
+                      // minWidth: 40,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            FluentIcons.home_20_filled,
+                            size: 25,
+                            color: Colors.grey,
+                          ),
+                          // Text(
+                          //   "Home",
+                          //   style: TextStyle(
+                          //     fontSize: 10,
+                          //     color: Colors.grey,
+                          //   ),
+                          // )
+                        ],
+                      )),
+                  Padding(
+                    padding: EdgeInsets.all(0.0),
+                    child: FlatButton(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 5.0,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      // color: Color(0xFF23B66F),
+                      color: CustColors.primaryBlue.withOpacity(0.9),
+                      onPressed: () {
+                        // setState(() {
+                        //   curentScreen = PostScreen();
+                        //   curent = 1;
+                        // });
+                      },
+                      // onPressed: () => print('Upload Photo'),
+                      child: Icon(
+                        Icons.add_box_rounded,
+                        size: 35.0,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  MaterialButton(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onPressed: () {
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(builder: (context) => Navbar()),
+                            (route) => false);
+                        // setState(() {
+                        //   curentScreen = ProfileScreen();
+                        //   curent = 2;
+                        // });
+                      },
+                      minWidth: 40,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            FluentIcons.person_20_filled,
+                            color: Colors.grey,
+                            size: 25,
+                          ),
+                          // Text(
+                          //   "Profile",
+                          //   style: TextStyle(
+                          //     fontSize: 10,
+                          //     color: Colors.grey,
+                          //   ),
+                          // )
+                        ],
+                      )),
+                ],
+              ),
+            ),
+          )),
       // backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -82,6 +186,34 @@ class _AddPostState extends State<AddPost> {
             ),
           ),
         ),
+        actions: [
+          InkWell(
+            // borderRadius: BorderRadius.circular(80),
+            onTap: () async {
+              if (caption.text != null) {
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (_) => AddPost(image: picked),
+                //   ),
+                // );
+                if (_formKey.currentState.validate()) {
+                  _createPost();
+                }
+              }
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Icon(
+                FluentIcons.send_20_filled,
+                color: caption.text != null
+                    ? Colors.black.withOpacity(0.8)
+                    : Colors.black.withOpacity(0.3),
+                size: 20,
+              ),
+            ),
+          )
+        ],
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
         title: Padding(
@@ -101,55 +233,126 @@ class _AddPostState extends State<AddPost> {
             // SizedBox(
             //   height: 20,
             // ),
-            (widget.image != null)
-                ? Container(
-                    child: Center(child: Image.memory(widget.image)),
-                    height: height / 2.5,
-                  )
-                : Container(
-                    // child: Center(child: Image.memory(widget.image)),
-                    height: height / 2.5,
-                  ),
-            SizedBox(
-              height: 20,
+            Container(
+              height: 10,
+              color: CustColors.primaryWhite,
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(30, 10, 30, 0),
-              child: TextFormField(
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter the caption.';
-                  }
-                  return null;
-                },
-                controller: caption,
-                decoration: InputDecoration(hintText: "Caption"),
-              ),
+            Container(
+              color: CustColors.primaryWhite,
+              // color: Colors.black,
+              height: height / 2,
+              width: width,
+              child: (widget.image != null)
+                  ? Container(
+                      child: Center(child: Image.memory(widget.image)),
+                      height: height / 2,
+                    )
+                  : Container(
+                      // child: Center(child: Image.memory(widget.image)),
+                      height: height / 2,
+                    ),
             ),
-            SizedBox(
-              height: 40,
+            Container(
+              height: 10,
+              color: CustColors.primaryWhite,
             ),
-            MaterialButton(
-              onPressed: () async {
-                if (_formKey.currentState.validate()) {
-                  _createPost();
-                }
-              },
-              minWidth: width / 1.15,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 15, bottom: 15),
-                child: Text(
-                  'Post',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: "Lato",
+            // SizedBox(
+            //   height: 20,
+            // ),
+            Expanded(
+              child: Container(
+                width: width,
+                decoration: BoxDecoration(color: Colors.white, boxShadow: [
+                  BoxShadow(
+                      color: Colors.black.withOpacity(0.3),
+                      offset: Offset(0, -2),
+                      blurRadius: 2)
+                ]),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Container(
+                    width: width / 1.15,
+                    child: Expanded(
+                      child: TextFormField(
+                        autofocus: true,
+                        // minLines: 10,
+                        maxLines: 20,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return '';
+                          }
+                          return null;
+                        },
+                        controller: caption,
+                        style: TextStyle(fontSize: 18),
+                        decoration: InputDecoration(
+                          fillColor: Colors.white.withOpacity(0.8),
+                          filled: true,
+                          contentPadding: EdgeInsets.fromLTRB(15, 10, 15, 15),
+                          hintText: "Write a caption ...",
+                          hintStyle: TextStyle(
+                              color: Colors.black.withOpacity(0.3),
+                              fontSize: 18),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.black.withOpacity(0.0)),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.black.withOpacity(0.0)),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.black.withOpacity(0.0)),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.black.withOpacity(0.0)),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.black.withOpacity(0.0)),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
-              color: CustColors.primaryBlue,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(100)),
             ),
+            // Expanded(child: C)
+            // SizedBox(
+            //   height: 40,
+            // ),
+            // MaterialButton(
+            //   onPressed: () async {
+            //     if (_formKey.currentState.validate()) {
+            //       _createPost();
+            //     }
+            //   },
+            //   minWidth: width / 1.15,
+            //   child: Padding(
+            //     padding: const EdgeInsets.only(top: 15, bottom: 15),
+            //     child: Text(
+            //       'Post',
+            //       style: TextStyle(
+            //         color: Colors.white,
+            //         fontFamily: "Lato",
+            //       ),
+            //     ),
+            //   ),
+            //   color: CustColors.primaryBlue,
+            //   shape: RoundedRectangleBorder(
+            //       borderRadius: BorderRadius.circular(20)),
+            // ),
+            // SizedBox(
+            //   height: 30,
+            // ),
           ],
         ),
       ),
