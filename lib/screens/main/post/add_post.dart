@@ -31,7 +31,10 @@ class _AddPostState extends State<AddPost> {
         widget.image == null ? null : getStringImageByte(widget.image);
     ApiResponse response = await createPost(caption.text, image);
     if (response.error == null) {
-      Navigator.of(context).pop();
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => Navbar()), (route) => false);
+      // Navigator.of(context).pop();
+
     } else if (response.error == unauthorized) {
       logout().then((value) => {
             Navigator.of(context).pushAndRemoveUntil(
