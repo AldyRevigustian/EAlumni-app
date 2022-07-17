@@ -33,7 +33,7 @@ class _ReadmoreState extends State<Readmore> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 5, left: 15, bottom: 10, right: 20),
+      padding: const EdgeInsets.only(top: 5, left: 15, bottom: 15, right: 20),
       // child: formatText(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,13 +43,13 @@ class _ReadmoreState extends State<Readmore> {
             child: secondHalf.isEmpty
                 ? Padding(
                     padding: const EdgeInsets.only(bottom: 0),
-                    child: new Text(firstHalf, style: TextStyle(fontSize: 14)),
+                    child: new Text(firstHalf, style: TextStyle(fontSize: 15)),
                   )
                 : new Column(
                     children: <Widget>[
                       Text(
                         flag ? (firstHalf + "...") : (firstHalf + secondHalf),
-                        style: TextStyle(fontSize: 14),
+                        style: TextStyle(fontSize: 15),
                       ),
                       new InkWell(
                         child: new Row(

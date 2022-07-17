@@ -27,7 +27,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   // final fifteenAgo = DateTime.now().subtract(Duration(minutes: 15));
-  final DateTime time1 = DateTime.parse("1987-07-20 20:18:04Z");
 
   Future listPost;
   List<dynamic> _postList = [];
@@ -313,9 +312,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                                           ),
                                                         ),
                                                         InkWell(
-                                                          // onDoubleTap: () =>
-                                                          //     print(
-                                                          //         'Like post'),
+                                                          // onDoubleTap: () {
+                                                          //   setState(() {
+                                                          //     post.selfLiked = true;
+                                                          //   });
+                                                          //   _handlePostLikeDislike(
+                                                          //       post.id);
+                                                          // },
                                                           onTap: () {},
                                                           child: Padding(
                                                               padding:
@@ -324,7 +327,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                       15,
                                                                       10,
                                                                       15,
-                                                                      10),
+                                                                      5),
                                                               child:
                                                                   ConstrainedBox(
                                                                 constraints:
@@ -407,9 +410,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                       Padding(
                                                                         padding: const EdgeInsets.only(
                                                                             left:
-                                                                                15,
+                                                                                10,
                                                                             right:
-                                                                                15,
+                                                                                20,
                                                                             top:
                                                                                 5),
                                                                         child:
@@ -423,13 +426,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
                                                                               /// if failed, you can do nothing
                                                                               return success ? !isLiked : isLiked;
-
-                                                                              // return !isLiked;
-                                                                              // return !isLiked;
-                                                                              // bool
-                                                                              //     success =
-                                                                              //     _handlePostLikeDislike(post.id);
-                                                                              // return isLiked = success;
                                                                             },
                                                                             size:
                                                                                 30,
@@ -447,7 +443,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                                 color: post.selfLiked ? Colors.red : Colors.black,
                                                                                 size: 30,
                                                                               );
-                                                                              // },
                                                                             },
                                                                           ),
                                                                         ),
@@ -461,7 +456,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                         child: kComment(
                                                                             FluentIcons
                                                                                 .chat_20_regular,
-                                                                            Colors.black,
+                                                                            Colors.black87,
                                                                             () {
                                                                           Navigator.of(context).push(MaterialPageRoute(
                                                                               builder: (context) => CommentScreen(
@@ -476,10 +471,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                                               Padding(
                                                                 padding:
                                                                     const EdgeInsets
-                                                                        .only(
-                                                                  left: 15,
-                                                                  top: 5,
-                                                                ),
+                                                                            .only(
+                                                                        left:
+                                                                            15,
+                                                                        top: 5),
                                                                 child: Text(
                                                                   numeral(post.likesCount ??
                                                                           0) +
@@ -490,7 +485,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                           FontWeight
                                                                               .bold,
                                                                       color: Colors
-                                                                          .black87),
+                                                                          .black),
                                                                 ),
                                                               ),
                                                               Readmore(
@@ -688,7 +683,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                 Padding(
                                                                   padding: const EdgeInsets
                                                                           .only(
-                                                                      left: 15,
+                                                                      left: 10,
                                                                       right: 20,
                                                                       top: 5),
                                                                   child:
@@ -740,37 +735,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                     ),
                                                                   ),
                                                                 ),
-                                                                // Padding(
-                                                                //   padding: const EdgeInsets
-                                                                //           .only(
-                                                                //       left: 15,
-                                                                //       top: 5),
-                                                                //   child: kLikeAndComment(
-                                                                //       post.selfLiked ==
-                                                                //               true
-                                                                //           ? FluentIcons
-                                                                //               .heart_20_filled
-                                                                //           : FluentIcons
-                                                                //               .heart_20_regular,
-                                                                //       post.selfLiked ==
-                                                                //               true
-                                                                //           ? Colors
-                                                                //               .red
-                                                                //           : Colors
-                                                                //               .black87,
-                                                                //       () {
-                                                                //     setState(
-                                                                //         () {
-                                                                //       post.selfLiked =
-                                                                //           !post
-                                                                //               .selfLiked;
-                                                                //     });
-                                                                //     _handlePostLikeDislike(
-                                                                //         post.id ??
-                                                                //             0);
-                                                                //   }),
-                                                                // ),
-
                                                                 Padding(
                                                                   padding: const EdgeInsets
                                                                           .only(
@@ -804,6 +768,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                             numeral(post.likesCount ??
                                                                     0) +
                                                                 " Suka",
+
                                                             // intl.NumberFormat.decimalPattern().format(100000),
                                                             style: TextStyle(
                                                                 fontWeight:

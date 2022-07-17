@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 import 'package:instagram_redesign_ui/models/api_response.dart';
 import 'package:instagram_redesign_ui/models/post.dart';
+import 'package:instagram_redesign_ui/models/post_single.dart';
 import 'package:instagram_redesign_ui/services/user_service.dart';
 
 import '../constant.dart';
@@ -24,6 +26,71 @@ Future<ApiResponse> getPosts() async {
             .toList();
         // we get list of posts, so we need to map each item to post model
         apiResponse.data as List<dynamic>;
+        break;
+      case 401:
+        apiResponse.error = unauthorized;
+        break;
+      default:
+        apiResponse.error = somethingWentWrong;
+        break;
+    }
+  } catch (e) {
+    apiResponse.error = serverError;
+  }
+  return apiResponse;
+}
+
+Future<ApiResponse> getPostsPeruserId(int userId) async {
+  ApiResponse apiResponse = ApiResponse();
+  try {
+    String token = await getToken();
+    final response = await http
+        .get(Uri.parse(postsURL + "/" + userId.toString()), headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token'
+    });
+
+    switch (response.statusCode) {
+      case 200:
+        apiResponse.data = jsonDecode(response.body)['post']
+            .map((p) => PostSingle.fromJson(p))
+            .toList();
+        // we get list of posts, so we need to map each item to post model
+        apiResponse.data as List<dynamic>;
+        log(apiResponse.data.toString());
+        break;
+      case 401:
+        apiResponse.error = unauthorized;
+        break;
+      default:
+        apiResponse.error = somethingWentWrong;
+        break;
+    }
+  } catch (e) {
+    apiResponse.error = serverError;
+  }
+  return apiResponse;
+}
+
+Future<ApiResponse> getPostsPerId(String id) async {
+  ApiResponse apiResponse = ApiResponse();
+  try {
+    String token = await getToken();
+    final response = await http.get(
+        Uri.parse("http://192.168.0.11:8000/api/post/" + id.toString()),
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token'
+        });
+
+    switch (response.statusCode) {
+      case 200:
+        apiResponse.data = jsonDecode(response.body)['post']
+            .map((p) => Post.fromJson(p))
+            .toList();
+        // we get list of posts, so we need to map each item to post model
+        apiResponse.data as List<dynamic>;
+        log(apiResponse.data.toString());
         break;
       case 401:
         apiResponse.error = unauthorized;

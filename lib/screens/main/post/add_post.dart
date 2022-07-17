@@ -65,109 +65,122 @@ class _AddPostState extends State<AddPost> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Colors.white,
-      bottomNavigationBar: ClipRRect(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20.0),
-            topRight: Radius.circular(20.0),
-          ),
-          child: BottomAppBar(
-            // color: Colors.red,
-            child: Container(
-              height: 80,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  MaterialButton(
-                      splashColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      minWidth: 40,
-                      onPressed: () {
-                        Navigator.of(context).pushAndRemoveUntil(
-                            MaterialPageRoute(builder: (context) => Navbar()),
-                            (route) => false);
-                        // setState(() {
-                        //   curentScreen = HomeScreen();
-                        //   curent = 0;
-                        // });
-                      },
-                      // minWidth: 40,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            FluentIcons.home_20_filled,
-                            size: 25,
-                            color: Colors.grey,
-                          ),
-                          // Text(
-                          //   "Home",
-                          //   style: TextStyle(
-                          //     fontSize: 10,
-                          //     color: Colors.grey,
-                          //   ),
-                          // )
-                        ],
-                      )),
-                  Padding(
-                    padding: EdgeInsets.all(0.0),
-                    child: FlatButton(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 5.0,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
-                      // color: Color(0xFF23B66F),
-                      color: CustColors.primaryBlue.withOpacity(0.9),
-                      onPressed: () {
-                        // setState(() {
-                        //   curentScreen = PostScreen();
-                        //   curent = 1;
-                        // });
-                      },
-                      // onPressed: () => print('Upload Photo'),
-                      child: Icon(
-                        Icons.add_box_rounded,
-                        size: 35.0,
-                        color: Colors.white,
+      // backgroundColor: Colors.white,
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20.0),
+              topRight: Radius.circular(20.0),
+            ),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  offset: Offset(0, -2),
+                  blurRadius: 2)
+            ]),
+        child: ClipRRect(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20.0),
+              topRight: Radius.circular(20.0),
+            ),
+            child: BottomAppBar(
+              // color: Colors.red,
+              child: Container(
+                height: 80,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    MaterialButton(
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        minWidth: 40,
+                        onPressed: () {
+                          Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(builder: (context) => Navbar()),
+                              (route) => false);
+                          // setState(() {
+                          //   curentScreen = HomeScreen();
+                          //   curent = 0;
+                          // });
+                        },
+                        // minWidth: 40,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              FluentIcons.home_20_filled,
+                              size: 25,
+                              color: Colors.grey,
+                            ),
+                            // Text(
+                            //   "Home",
+                            //   style: TextStyle(
+                            //     fontSize: 10,
+                            //     color: Colors.grey,
+                            //   ),
+                            // )
+                          ],
+                        )),
+                    Padding(
+                      padding: EdgeInsets.all(0.0),
+                      child: FlatButton(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 5.0,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                        // color: Color(0xFF23B66F),
+                        color: CustColors.primaryBlue.withOpacity(0.9),
+                        onPressed: () {
+                          // setState(() {
+                          //   curentScreen = PostScreen();
+                          //   curent = 1;
+                          // });
+                        },
+                        // onPressed: () => print('Upload Photo'),
+                        child: Icon(
+                          Icons.add_box_rounded,
+                          size: 35.0,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
-                  ),
-                  MaterialButton(
-                      splashColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onPressed: () {
-                        Navigator.of(context).pushAndRemoveUntil(
-                            MaterialPageRoute(builder: (context) => Navbar()),
-                            (route) => false);
-                        // setState(() {
-                        //   curentScreen = ProfileScreen();
-                        //   curent = 2;
-                        // });
-                      },
-                      minWidth: 40,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            FluentIcons.person_20_filled,
-                            color: Colors.grey,
-                            size: 25,
-                          ),
-                          // Text(
-                          //   "Profile",
-                          //   style: TextStyle(
-                          //     fontSize: 10,
-                          //     color: Colors.grey,
-                          //   ),
-                          // )
-                        ],
-                      )),
-                ],
+                    MaterialButton(
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onPressed: () {
+                          Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(builder: (context) => Navbar()),
+                              (route) => false);
+                          // setState(() {
+                          //   curentScreen = ProfileScreen();
+                          //   curent = 2;
+                          // });
+                        },
+                        minWidth: 40,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              FluentIcons.person_20_filled,
+                              color: Colors.grey,
+                              size: 25,
+                            ),
+                            // Text(
+                            //   "Profile",
+                            //   style: TextStyle(
+                            //     fontSize: 10,
+                            //     color: Colors.grey,
+                            //   ),
+                            // )
+                          ],
+                        )),
+                  ],
+                ),
               ),
-            ),
-          )),
+            )),
+      ),
       // backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -240,7 +253,7 @@ class _AddPostState extends State<AddPost> {
             Container(
               color: CustColors.primaryWhite,
               // color: Colors.black,
-              height: height / 2,
+              height: height / 2.4,
               width: width,
               child: (widget.image != null)
                   ? Container(
@@ -262,12 +275,18 @@ class _AddPostState extends State<AddPost> {
             Expanded(
               child: Container(
                 width: width,
-                decoration: BoxDecoration(color: Colors.white, boxShadow: [
-                  BoxShadow(
-                      color: Colors.black.withOpacity(0.3),
-                      offset: Offset(0, -2),
-                      blurRadius: 2)
-                ]),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(25.0),
+                      topRight: Radius.circular(25.0),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          offset: Offset(0, -3),
+                          blurRadius: 2)
+                    ]),
                 child: Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: Container(
@@ -288,7 +307,7 @@ class _AddPostState extends State<AddPost> {
                         decoration: InputDecoration(
                           fillColor: Colors.white.withOpacity(0.8),
                           filled: true,
-                          contentPadding: EdgeInsets.fromLTRB(15, 10, 15, 15),
+                          contentPadding: EdgeInsets.fromLTRB(20, 0, 20, 20),
                           hintText: "Write a caption ...",
                           hintStyle: TextStyle(
                               color: Colors.black.withOpacity(0.3),

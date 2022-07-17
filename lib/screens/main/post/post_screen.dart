@@ -96,7 +96,7 @@ class _PostScreenState extends State<PostScreen> {
           await PhotoManager.getAssetPathList(onlyAll: true);
       print(albums);
       List<AssetEntity> media =
-          await albums[0].getAssetListPaged(currentPage, 9);
+          await albums[0].getAssetListPaged(currentPage, 10);
       print(media);
       List<Widget> temp = [];
       for (var asset in media) {
